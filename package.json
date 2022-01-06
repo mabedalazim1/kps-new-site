@@ -6,9 +6,26 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "ag-grid-community": "^26.2.1",
+    "ag-grid-react": "^26.2.0",
+    "axios": "^0.24.0",
+    "bootstrap": "^5.1.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.0.3",
+    "browser-image-compression": "^1.0.17",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-redux": "^7.2.6",
+    "react-redux-loading-bar": "^5.0.2",
+    "react-redux-loading": "^4.6.1",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-spring": "^9.4.1",
+    "react-validation": "^3.0.7",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
+    "validator": "^13.7.0",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
@@ -34,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.9"
   }
 }

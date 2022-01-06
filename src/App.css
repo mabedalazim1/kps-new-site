@@ -1,4 +1,77 @@
-.App {
-  text-align: center;
+:root {
+  --main-color: #ff9600;
+  --main-color-b: #1d96a1;
+  --main-color-c: #72e9ea;
+  --main-color-d: #41b672;
+
+  --font-ar-a: Scheherazade ,Arial, Helvetica, sans-serif;
+  --font-ar-b: Mukta,Arial, Helvetica, sans-serif;
+  --font-ar-c: Almarai,Arial, Helvetica, sans-serif;
+  --font-ar-d: 'Lateef', cursive;;
+
+  --baner-back: linear-gradient(90deg, var(--main-color-d),#2facac);
 }
 
+body{
+  background-color:  #f7f7f7;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.main-title{
+  text-align: right;
+  font-family: var(--font-ar-c);
+  font-size: 22px;
+  font-weight: 600;
+  position: relative;
+}
+.main-title::after{
+  content: "";
+    position: absolute;
+    bottom: -20px;
+    right: 0px;
+    border: 2px solid var(--main-color);
+    width: 45px;
+    text-align: right;
+    direction: rtl;
+}
+.screenDiv {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.topContainer {
+  width: 100%;
+  height: 80%;
+  background-color: #c6e2f4;
+}
+
+.botContainer {
+  width: 100%;
+  height: 20%;
+  background-color: #df41df;
+  display: flex;
+  justify-content: space-between;
+}
+
+.LeftDiv {
+  width: 5%;
+  height: 20%;
+  position: relative;
+  top: 50%;
+  left: 10%;
+  background-color: green;
+}
+
+.RightDiv {
+  width: 5%;
+  height: 20%;
+  position: relative;
+  top: 50%;
+  right: 10%;
+  background-color: #ff0000; 
+}

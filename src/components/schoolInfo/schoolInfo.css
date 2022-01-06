@@ -1,0 +1,117 @@
+.school-info{
+    width: 90%;
+    margin: 50px auto;
+    height: auto;
+    border-top: 7px solid var(--main-color-d);
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-color);
+    height: 230px;
+    padding-top: 20px;
+    font-family: var(--font-ar-c);
+}
+.school-info .info-img{
+    display: flex;
+}
+.info-text{
+    flex: 1;
+    color: #fff;
+    position: relative;
+    padding-right: 30px;
+    text-align: center;
+}
+.school-info .info-titel{
+    text-align: center;
+    font-size: 14px;
+    color:#333;
+    font-weight: bold;
+}
+.school-info .info-contant{
+    text-align: right;
+    font-size: 14px;
+    padding-top: 5px;
+    
+}
+.school-info .button button{
+    display: block;
+    margin-left: 60px;
+    margin-top: -60px;
+    border: 1px solid #fff;
+}
+.school-info .button button:hover{
+color: var(--main-color);
+}
+.school-info .button button:hover span{
+    background-color: #fff;
+    }
+.info-img img{
+    width: 335px;
+    background-size: cover;
+    margin-left: -12px;
+    margin-bottom: 21px;
+}
+
+/* Start About School */
+.about-school{
+    width: 90%;
+    margin-top: 50px;
+    text-align: right;
+    font-family: var(--font-ar-c);
+    line-height: 2.25;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+.about-school .main-title{
+    margin-bottom: 30px;
+}
+.about-school .about-contant{
+    padding: 20px;
+    color: #777;
+    font-size: 14px;
+    
+}
+.about-school .about-img{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.about-school .about-img img{
+    height: 300px;
+   
+}
+/* End About School */
+/*Medim */
+@media (max-width: 992px) {
+    .school-info .info-img{
+        display: none;
+    }
+}
+/*Small */
+@media (max-width: 768px) {
+    .school-info{
+        margin-top: 20px;
+        height:  auto;
+        width: 96% !important;
+        margin-bottom: -50px;
+    }
+    .school-info .info-titel{
+        margin-top: 10px;
+    }
+    .school-info .button button{
+        display: inline;
+        margin:15px 0 5px;
+    }
+    .about-school{
+    width: 100%;
+    flex-direction: column;
+    background-color: #f2f2f2;
+    padding-bottom: 50px;
+    }
+
+}

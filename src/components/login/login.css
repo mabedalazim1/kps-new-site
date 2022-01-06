@@ -1,0 +1,89 @@
+
+.kps{
+  color: var(--main-color);
+}
+.regiser{
+  font-family:var(--main-font-ar-A);
+  padding-top:100px;
+  font-size:35px;
+}
+.register-title{
+  
+}
+.card-signin {
+  border: 0;
+  border-radius: 1rem !important;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  background-color: #f6f9ff;
+}
+
+.con-signin{
+  margin-top:-30px;
+}
+
+.card-body {
+  background-color: #F6F9FF !important;
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.mybtn_m {
+  background-color: #1d96a1 !important;
+  color: #f6f9fa !important;
+  width: 100%;
+}
+.card-con{
+  border-radius:15px;
+}
+.card-signin .card-body {
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+  .form-signin .btn {
+      font-size: 80%;
+      border-radius: 5rem;
+      letter-spacing: .1rem;
+      font-weight: bold;
+      padding: 1rem;
+      transition: all 0.2s;
+      background-color: #8fbc8f !important;
+  }
+
+.mytext {
+  border-radius: 1rem !important;
+}
+
+.mylog-btn {
+  background-color: #1d96a1 !important;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+  .form-label-group input,
+  .form-label-group button {
+      height: auto;
+      border-radius: 2rem;
+  }
+
+  .form-label-group > input,
+  .form-label-group > button,
+  .form-label-group > label {
+      padding: var(--input-padding-y) var(--input-padding-x);
+  }
+.UserName {
+  height: 40px !important;
+  text-align: center;
+}
+

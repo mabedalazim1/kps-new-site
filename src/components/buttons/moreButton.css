@@ -1,0 +1,39 @@
+
+.more-button {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 0 10px;
+    font-weight: bold;
+    border: 2px solid #fff;
+    border-radius: 5px !important;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+.more-button span {
+    background-color: var(--main-color-d);
+  height: 100%;
+  width: 0;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.more-button:hover span {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .more-button:hover {
+    border: none;
+  }
+  .link-button {
+  text-decoration: none ;
+}
