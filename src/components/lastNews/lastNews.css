@@ -5,14 +5,14 @@
 .last-news-img{
     background-repeat: no-repeat;
     background-size: cover;
-    height: 200px;
-    min-height: 200px;
+    height: 300px;
+    min-height: 300px;
     width: 100%;
     position: relative;
 }
 .last-news .main-title{
     text-align: center;
-    padding-top: 50px;
+    padding-top: 8.5%;
 }
 .last-news .main-title::after{
     left: 50%;
@@ -20,18 +20,20 @@
 }
 .last-news .tabs{
     position: absolute;
-    bottom:  0px;
-    left: 9%;
-    margin-top: 24px;
+    bottom:  -24px;
+    left: 10%;
+    margin: 24px auto;
     z-index: 2;
     display: flex;
     flex-direction: row-reverse;
     align-items: center ;
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
 }
 .last-news .tabs button{
     display: flex;
+    font-family: var(--font-ar-c);
+    font-size: 12px;
     align-items: center;
     justify-content: center;
     padding: 30px 30px;
@@ -42,18 +44,18 @@
     transition: background-color .3s;
     height: 40px;
     cursor: pointer;
-    background-color: #00aaff;
+    background-color:var(--main-color-d);
     outline: none;
     border: none;
 }
 .last-news .tabs button:hover{
-    background: var(--main-color-d);
+    background: var(--main-color-b);
 }
 .last-news .tabs button.active{
     position: relative;
     border-right: 3px solid var(--main-color-d) ;
     border-left: 3px solid var(--main-color-d) ;
-    background: #fff;
+    background: var(--body-color);
 }
 .last-news .tabs button.active::after{
     content: "";
@@ -64,8 +66,8 @@
     border: 2px solid var(--main-color-d);
 }
 .tab>div{
-    margin-bottom: 200px;
-    width: 95%;
+    margin-bottom: 100px;
+    width: 100%;
     padding: 10px 30px 40px;
     line-height: 1.4em;
     display: flex;
@@ -85,11 +87,13 @@
     }
     .last-news-img{
         margin-bottom: -10px;
-        height: 100px;
-        min-height: 100px;
+        height: 150px;
+        min-height:150px;
+        background-size: contain;
+
     }
     .last-news .main-title{
-        padding-top: 20px;
+        padding-top: 62px;
     }
     .last-news .main-title::after{
         bottom: -10px;

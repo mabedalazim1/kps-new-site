@@ -1,0 +1,41 @@
+
+.access-denied{
+background-color: #333;
+color: white;
+min-height: 100vh;
+text-align: center;
+padding-top: 150px;
+position: relative;
+}
+.access-denied img{
+    width: 120px;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+.access-denied hr{
+    margin:auto;
+    width:80%;
+   margin-bottom: 20px;
+}
+
+.access-denied h1 ,
+.access-denied h3 ,
+.access-denied h4,
+.access-denied h6 {
+    padding-top: 20px;
+    color:#fd9139;
+}
+.access-denied h6{
+    text-decoration: underline;
+}
+
+.access-denied a{
+    color: #ddd;
+}
+.access-denied a:hover{
+    color: var(--main-color-b);
+}
+.access-denied .lgin a{
+    padding-top: -20px;
+}

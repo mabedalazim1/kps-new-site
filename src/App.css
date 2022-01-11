@@ -1,8 +1,12 @@
 :root {
-  --main-color: #ff9600;
+  --main-color: #e18f1a;
   --main-color-b: #1d96a1;
   --main-color-c: #72e9ea;
   --main-color-d: #41b672;
+  --main-color-f: #f89409;
+  --main-color-e: #f6d8b4;
+
+  --body-color: #f7f7f7;
 
   --font-ar-a: Scheherazade ,Arial, Helvetica, sans-serif;
   --font-ar-b: Mukta,Arial, Helvetica, sans-serif;

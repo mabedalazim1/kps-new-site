@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import Roiaa from './pages/roiaa/Roiaa';
 import Index from './pages/home/index/Index';
+import Login from './components/login/login.component';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         
         <Route path='manasa' element={<Manasa />} />
         <Route path='admin' element={<Admin />} />
+        <Route path='login' element={<Login />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>

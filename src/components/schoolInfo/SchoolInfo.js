@@ -3,6 +3,7 @@ import MoreButton from '../buttons/MoreButton'
 import './schoolInfo.css'
 
 const SchoolInfo = () => {
+
   return (
     <>
       <div className='container school-info'>

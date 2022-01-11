@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import  NavbarItem  from './NavIbarItem'
 import { NavLink } from 'react-router-dom'
 import closeSymbol from './../../assest/svg/close.svg'
 import menuSymbol from './../../assest/svg/menu.svg'
+import { logout } from "./../../actions/auth";
+import { useDispatch, useSelector } from "react-redux"
+import  useScroll  from './../../hooks/useScroll'
 import './navBar.css'
 
 const NavBar = () => {
+
+  const { user: currentUser } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const scroll = useScroll()
+
   const [click, setClick] = useState(false)
   const[navBar, setNavBar] =useState(false)
   const handleClick = () => setClick(!click)
@@ -17,13 +25,23 @@ const NavBar = () => {
     {title:" أخر الأخبار",link:"/contactus"},
   ]
   const changNavBar = () => {
-    if (window.scrollY >= 500) {
+    if (scroll >= 500) {
       setNavBar(true)
     } else {
       setNavBar(false)
     }
   }
-  window.addEventListener('scroll',changNavBar )
+  useEffect(() => {
+     changNavBar()
+  })
+
+  
+  const handelLogout = () => {
+    dispatch(logout())
+  }
+
+  
+
   return (
     <>
       <div className='header'>
@@ -38,13 +56,29 @@ const NavBar = () => {
               <img src='assets/images/logo-b.png' alt='logo'
                 className={ navBar ? 'logo-b active':'logo-b'} />
             </div>
-            <ul className={click ? 'nav-con' : navBar ?  'nav-con active close' : 'nav-con close'}>
+            <ul className={ click ? 'nav-con' : navBar ? 'nav-con active close' : 'nav-con close' }>
+             
               <div className='login-con'>
+
+              { currentUser ? (
+                  <li onClick={ () => {
+                    handelLogout()
+                    handleClick()
+                  } }>
+                 <NavLink to='/'>
+                     خروج
+                    {currentUser.username}
+                 </NavLink>
+                 </li>
+              ) : (
                 <li>
-                  <NavLink to='/login'>
-                    تسجيل الدخول
-                  </NavLink>
+                <NavLink to='/login'>
+                  تسجيل الدخول
+                </NavLink>
                 </li>
+              ) }
+                
+               
               </div>
               <div className='links-con'>
                 <NavbarItem
@@ -67,5 +101,6 @@ const NavBar = () => {
     </>
   )
 }
+
 
 export default NavBar

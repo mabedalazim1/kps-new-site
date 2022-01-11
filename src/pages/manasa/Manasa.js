@@ -1,8 +1,15 @@
+import AccessDenied from "../accessDenied/AccessDenied";
 
 const Manasa = () => {
+    let auth = localStorage.getItem('user');
     return (
         <div>
-            Manasa
+            { !auth ? <AccessDenied />
+                :
+                
+                (<p>OK :  Auth  Manasa Conatant Here</p>)
+            }
+           
            
         </div>
     );
