@@ -3,7 +3,7 @@ import LastNews from "./../../components/lastNews/LastNews"
 import ImportantNumber from "./../../components/importantNumber/ImportantNumber"
 import ImageSlider from "../../components/navBar/ImageSlider"
 import { SliderData as slides } from './../../components/navBar/imgData'
-import Slider from './../../components/slider/Slider'
+import Footer from "../../components/footer/Footer"
 const Home = () => {
     return (
         <>
@@ -14,10 +14,7 @@ const Home = () => {
             <SchoolInfo />
             <LastNews />
             <ImportantNumber />
-            <div style={ { height: "500px", width: "100%", backgroundColor: "red" } }>
-                Div
-            </div>
-           
+           <Footer />
     </>
     )
 }

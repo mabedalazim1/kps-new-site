@@ -5,7 +5,8 @@ import closeSymbol from './../../assest/svg/close.svg'
 import menuSymbol from './../../assest/svg/menu.svg'
 import { logout } from "./../../actions/auth";
 import { useDispatch, useSelector } from "react-redux"
-import  useScroll  from './../../hooks/useScroll'
+import useScroll from './../../hooks/useScroll'
+import history from '../../helpers/history'
 import './navBar.css'
 
 const NavBar = () => {
@@ -15,9 +16,13 @@ const NavBar = () => {
   const scroll = useScroll()
 
   const [click, setClick] = useState(false)
-  const[navBar, setNavBar] =useState(false)
+  const [navBar, setNavBar] = useState(false)
+  
   const handleClick = () => setClick(!click)
   const closeMenu = () => setClick(false)
+  const addLink = (link) => {
+    history.push(link)
+  }
   const navItems = [
     {title:"الرئيسية",link:"/"},
     {title:"المنصة",link:"/manasa"},
@@ -83,7 +88,8 @@ const NavBar = () => {
               <div className='links-con'>
                 <NavbarItem
                   navItems={ navItems }
-                  closeMenu={closeMenu}
+                  closeMenu={ closeMenu }
+                  addLink={addLink}
                 />
               </div>
             </ul>

@@ -1,16 +1,17 @@
-import AccessDenied from "../accessDenied/AccessDenied";
+
+import { Navigate } from 'react-router-dom';
+import {  useSelector } from 'react-redux'
 
 const Manasa = () => {
-    let auth = localStorage.getItem('user');
+    const { user } = useSelector(state => state.auth)
+    
     return (
         <div>
-            { !auth ? <AccessDenied />
-                :
-                
-                (<p>OK :  Auth  Manasa Conatant Here</p>)
+            { !user   ? <Navigate to ="/login" /> 
+                : 
+              
+                (<h1 style={{margin:"150px auto",textAlign:"center"}}> OK :  Auth   Manasa Conatant Here</h1>)
             }
-           
-           
         </div>
     );
 }

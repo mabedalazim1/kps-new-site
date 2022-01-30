@@ -5,85 +5,35 @@
 .last-news-img{
     background-repeat: no-repeat;
     background-size: cover;
-    height: 300px;
-    min-height: 300px;
+    background-position: top;
+    height: 270px;
+    min-height: 270px;
     width: 100%;
     position: relative;
+
 }
 .last-news .main-title{
     text-align: center;
     padding-top: 8.5%;
+    color: #fff;
 }
 .last-news .main-title::after{
     left: 50%;
     border: 2px solid var(--main-color);
 }
-.last-news .tabs{
-    position: absolute;
-    bottom:  -24px;
-    left: 10%;
-    margin: 24px auto;
-    z-index: 2;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center ;
-    justify-content: space-between;
-    width: 80%;
-}
-.last-news .tabs button{
-    display: flex;
-    font-family: var(--font-ar-c);
-    font-size: 12px;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 30px;
-    width: 200px;
-    max-width: 200px;
-    text-align: center;
-    margin-right: 31px;
-    transition: background-color .3s;
-    height: 40px;
-    cursor: pointer;
-    background-color:var(--main-color-d);
-    outline: none;
-    border: none;
-}
-.last-news .tabs button:hover{
-    background: var(--main-color-b);
-}
-.last-news .tabs button.active{
-    position: relative;
-    border-right: 3px solid var(--main-color-d) ;
-    border-left: 3px solid var(--main-color-d) ;
-    background: var(--body-color);
-}
-.last-news .tabs button.active::after{
-    content: "";
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    border: 2px solid var(--main-color-d);
-}
-.tab>div{
-    margin-bottom: 100px;
-    width: 100%;
-    padding: 10px 30px 40px;
-    line-height: 1.4em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity .3s, transform 1s;
+
+.last-news .tab{
+    margin: 50px 120px;
 }
 
- /*Medim */
+ /*Medim */ 
  @media (max-width: 992px) {
     
 }
 /*Small */
 @media (max-width: 768px) {
     .last-news{
-        margin-top: -100px;
+        margin-top: 0px;
     }
     .last-news-img{
         margin-bottom: -10px;
@@ -93,12 +43,12 @@
 
     }
     .last-news .main-title{
-        padding-top: 62px;
+        padding-top: 30px;
     }
     .last-news .main-title::after{
         bottom: -10px;
     }
-    .last-news .tabs{
-       display: none;
+    .last-news .tab{
+        margin: 5px;
     }
 }

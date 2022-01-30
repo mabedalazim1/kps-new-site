@@ -1,23 +1,23 @@
-import axios from "axios";
+import TokenService from "./token.service";
+import api from "./api";
 
-const API_URL = process.env.REACT_APP_SERVER_URL;
 class AuthService {
    register = (username, password) => {
-    return axios.post(API_URL + "auth/signup", {
+    return api.post("auth/signup", {
       username,
       password,
     });
   };
 
    login = (username, password) => {
-    return axios
-      .post(API_URL + "auth/signin", {
+     return api
+       .post("auth/signin", {
         username,
         password,
       })
       .then((response) => {
         if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data))
+          TokenService.setUser(response.data);
         }
 
         return response.data
@@ -25,7 +25,10 @@ class AuthService {
   }
 
    logout = () => {
-    localStorage.removeItem("user")
+    TokenService.removeUser();
   }
+   getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem("user"));
+  };
 }
 export default new AuthService()

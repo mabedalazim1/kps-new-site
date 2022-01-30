@@ -1,13 +1,12 @@
 
 .featured-news{
-    margin: -100px auto 0;
+    margin: 0px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     width: 100% ;
     height: auto;
-    padding: 20px 0 ;
     font-family: var(--font-ar-c);
     transition: 0.3s;
     border-radius: 10px;
@@ -20,7 +19,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 5px;
+    margin-top: 170px;
+    margin-bottom: 50px;
     border-radius: 5px;
     position: relative;
     flex: 1;
@@ -37,6 +37,9 @@
     direction: rtl;
     min-height: 40px;
 }
+h2{
+    color: #000;
+}
 .featured-news-item .image{
     width: 100%;
     display: flex;
@@ -46,17 +49,18 @@
 }
 
 .featured-news-item .image img{
-    width: 80%;
+    width: 70%;
     display: block;
     margin: auto;
-    background-size: contain;
+    background-size: cover;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    opacity: .8;
+    opacity: 1;
+    border: 3px solid var(--main-color-d);
 }
 .featured-news .featured-news-item .image img:hover{
     box-shadow: 0 8px 16px 0 rgba(10,10,0,0.2);
-    opacity: 1;
+    opacity: .8;
 }
 
 .featured-news-item .img-desc {
@@ -65,11 +69,12 @@
     text-align: justify;
     direction: rtl;
     font-size: 13px ;
-    top: 80%;
-    width:60%;
-    height:60%;
+    top: 63%;
+    width:50%;
+    height:30%;
     background: #f7f7f7;
     max-height: 200px;
+    z-index: 1;
 }
 .featured-news-item  h5{
     font-size: 13px !important;
@@ -81,7 +86,7 @@
     position: absolute;
     display: block;
     left: 0;
-    top:10px;
+    top:5px;
     transition: all .3s ease ;
     width: 100%;
     padding: 10px;
@@ -90,14 +95,100 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom: 5px solid var(--main-color-d) ;  
+    border-bottom: 4px solid var(--main-color-d) ;  
 }
 .featured-news-item:hover  span,
 .featured-news-item .img-desc:hover span{
-    top:0px;
+    top:5px;
     width:  100%;
     cursor: pointer;
     background-color: var(--main-color-d);
     color: #fff;
-    cursor: pointer;
+}
+
+
+
+ /*Medim */
+ @media (max-width: 992px) {
+    
+}
+/*Small */
+@media (max-width: 768px) {
+    .featured-news{
+        margin-bottom: -30px;
+    }
+    .featured-news-item{
+        margin-top: -100px;
+    }
+    .featured-news-item .featured-title h2{
+        margin: 30px;
+        font-size: 15px;
+        text-align: center;
+        direction: rtl;
+        min-height: 40px;
+    }
+    .featured-news-item .image{
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 30px;
+    }
+    
+    .featured-news-item .image img{
+        width: 80%;
+        display: block;
+        margin: auto;
+        background-size: contain;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        opacity: 1;
+    }
+    .featured-news .featured-news-item .image img:hover{
+        box-shadow: 0 8px 16px 0 rgba(10,10,0,0.2);
+        opacity: .8;
+    }
+    
+    .featured-news-item .img-desc {
+        position: absolute;
+        padding: 10px;
+        text-align: justify;
+        direction: rtl;
+        font-size: 13px ;
+        top: 80%;
+        width:60%;
+        height:60%;
+        background: #f7f7f7;
+        max-height: 200px;
+    }
+    .featured-news-item  h5{
+        font-size: 13px !important;
+    }
+    .featured-news-item:hover .img-desc{
+        border: none;
+    }
+    .featured-news-item .img-desc span{
+        position: absolute;
+        display: block;
+        left: 0;
+        top:10px;
+        transition: all .3s ease ;
+        width: 100%;
+        padding: 10px;
+        min-height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+        border-bottom: 4px solid var(--main-color-d) ;  
+    }
+    .featured-news-item:hover  span,
+    .featured-news-item .img-desc:hover span{
+        top: 4px;
+        width:  100%;
+        cursor: pointer;
+        background-color: var(--main-color-d);
+        color: #fff;
+        cursor: pointer;
+    }
 }

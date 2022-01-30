@@ -56,7 +56,7 @@ color: var(--main-color);
 
 /* Start About School */
 .about-school{
-    width: 90%;
+    width: 100%;
     margin-top: 50px;
     text-align: right;
     font-family: var(--font-ar-c);
@@ -65,12 +65,19 @@ color: var(--main-color);
     flex-direction: row-reverse;
     justify-content: space-between;
     margin-bottom: 100px;
+    padding-top: 50px;
+    background-color: #fff;
+    border-top-right-radius: 120px;
+    border-top-left-radius: 10px;
+    padding-bottom: 100px;
+    border-bottom-left-radius: 120px ;
+    box-shadow: 1px 1px 3px #ddd;
 }
 .about-school .main-title{
     margin-bottom: 30px;
 }
 .about-school .about-contant{
-    padding: 20px;
+    padding: 50px;
     color: #777;
     font-size: 14px;
     
@@ -109,10 +116,14 @@ color: var(--main-color);
         margin:15px 0 5px;
     }
     .about-school{
+        margin-top: 100px;
     width: 100%;
     flex-direction: column;
     background-color: #f2f2f2;
-    padding-bottom: 50px;
     }
-
+.about-school img{
+    height: 80%;
+    border: 3px solid var(--main-color) !important;
+    border-radius: 10px;
+}
 }

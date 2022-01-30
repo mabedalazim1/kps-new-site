@@ -4,13 +4,14 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    SET_MESSAGE,
+  SET_MESSAGE,
+  REFRESH_TOKEN,
   } from "./types";
   
   import AuthService from "../services/auth.service"
   
-  export const register = (username, email, password) => (dispatch) => {
-    return AuthService.register(username, email, password).then(
+  export const register = (username, email) => (dispatch) => {
+    return AuthService.register(username, email).then(
       (response) => {
         dispatch({
           type: REGISTER_SUCCESS,
@@ -83,4 +84,11 @@ import {
     dispatch({
       type: LOGOUT,
     })
-  }
+}
+  
+export const refreshToken = (accessToken) => (dispatch) => {
+  dispatch({
+    type: REFRESH_TOKEN,
+    payload: accessToken,
+  })
+}

@@ -17,35 +17,36 @@ import {featuredData} from './../../data/data'
 // install Swiper modules
 SwiperCore.use([EffectFade, Navigation, Pagination]);
 
-const Slider = ()=> {
+const Slider = () => {
   
 
   return (
     <>
-    <Swiper  dir="rtl" spaceBetween={10}  navigation={true}
-      className="mySwiper">
-        { featuredData.map((items, itemsIndex) => (
-          <SwiperSlide key={ itemsIndex }>
-            { items.map((item, index) => (
-                 <div key={index} className="featured-news-item"> 
-              <div className="featured-title">
-                <h2>{ item.imgTitle }</h2>
+      <Swiper dir="rtl" spaceBetween={ 10 } navigation={ true }
+        className="mySwiper">
+        { Object.values(featuredData).map((items, itemIndex) => (
+          Object.values(items).map((item, index) => (
+            <SwiperSlide key={ index }>
+
+              <div key={ index } className="featured-news-item">
+              <div className="img-desc">
+                  <span><h5>{ item.imgDesc } </h5></span>
+                </div>
+                <div className="featured-title">
+                  <h2>{ item.imgTitle }</h2>
+                </div>
+                <div className="image">
+                  <img src={ item.imgUrl } alt="" />
+                </div>
+               
               </div>
-              <div  className="image">
-                 <img src={item.imgUrl} alt="" />
-              </div>
-              <div  className="img-desc">
-                    <span><h5>{item.imgDesc} </h5></span>
-                    </div>
-              </div>
-            ))}
+            </SwiperSlide>
             
-           
-          </SwiperSlide>
-        ))}
+          ))))}
        
-  </Swiper>
+      </Swiper>
     </>
   )
 }
+
 export default Slider

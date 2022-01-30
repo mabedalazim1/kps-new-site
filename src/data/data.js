@@ -19,8 +19,8 @@ const featuredData = [
     imgUrl: '/assets/test/IMG_3298.jpg',
     imgDesc: ' 3333333333333قامت المدرسة بحفل تكريم للطلاب الفائقين'
     },
-  ],
-  [
+
+  
     {
       id: 4,
       imgTitle: 'تكريم الطلاب الفائقين',
