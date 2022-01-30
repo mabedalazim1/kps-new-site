@@ -71,7 +71,7 @@ color: var(--main-color);
     border-top-left-radius: 10px;
     padding-bottom: 100px;
     border-bottom-left-radius: 120px ;
-    box-shadow: 1px 1px 3px #ddd;
+    box-shadow: var(--main-shadow);
 }
 .about-school .main-title{
     margin-bottom: 30px;

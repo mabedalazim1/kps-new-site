@@ -77,6 +77,9 @@ footer .footer-logo{
 }
 /*Small */
 @media (max-width: 768px) {
+    .footer .main-title{
+        transform: translate(-40%);
+    }
     .footer-cover , .footer-cover .overlay{
         height: 550px;
     }
