@@ -11,20 +11,20 @@ const Footer = () => {
                   }}
             >   
                 <div className='overlay'>
-                <div class="container contant">
-                <div class="row">
-                    <div class="col-md">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p class="sub-title">محافظة المنيا - بنى مزار</p>
-                        <p class="sub-title">ش مدرسة الكوثر المتفرع من ش البحر</p>
+                <div className="container contant">
+                <div className="row">
+                    <div className="col-md">
+                        <i className="fas fa-map-marker-alt"></i>
+                        <p className="sub-title">محافظة المنيا - بنى مزار</p>
+                        <p className="sub-title">ش مدرسة الكوثر المتفرع من ش البحر</p>
                     </div>
-                    <div class="col-md">
-                        <i class="fas fa-envelope-square"></i>
-                        <p class="sub-title">elkwtherpschool@gmail.com</p>
+                    <div className="col-md">
+                        <i className="fas fa-envelope-square"></i>
+                        <p className="sub-title">elkwtherpschool@gmail.com</p>
                     </div>
-                    <div class="col-md">
-                        <i class="fas fa-phone-square-alt"></i>
-                        <p class="sub-title"> 01121427556 (002)</p>
+                    <div className="col-md">
+                        <i className="fas fa-phone-square-alt"></i>
+                        <p className="sub-title"> 01121427556 (002)</p>
                     </div>
                 </div>
             </div>

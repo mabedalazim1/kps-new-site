@@ -10,8 +10,8 @@ const Testimonials = () => {
                     src='/assets/images/students/std-1.jpg'
                     alt='' />
                 <div>
-                <p class="text-icon-right">
-                        <i class="fas fa-quote-right"></i>
+                <p className="text-icon-right">
+                        <i className="fas fa-quote-right"></i>
                     </p>
                     <p>
                         تزويد العائلات المحلية بتعليم ممتاز يقدمه مدرسون استثنائيون في مرافق حائزة على جوائز.
@@ -20,8 +20,8 @@ const Testimonials = () => {
                         أيضًا نخطو خطوات رئيسية نحو إنشاء مدرسة تحدث فرقًا كبيرًا في المجتمع الذي نخدمه وتوفر فرصًا
                         لجميع طلابنا وطلابنا.
  </p>
-                    <p class="text-icon-left">
-                        <i class="fas fa-quote-left"></i>
+                    <p className="text-icon-left">
+                        <i className="fas fa-quote-left"></i>
                     </p>
                 </div>
             </div>

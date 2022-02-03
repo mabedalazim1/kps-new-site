@@ -1,0 +1,62 @@
+.item-section{
+    margin: auto;
+    min-width: 350px;
+    width: 100%;
+    min-height: 81vh;
+  position: relative;
+}
+.item-section h4{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.item-section .table{
+    direction: rtl;
+   width:95%;
+   min-width: 350px;
+   margin: 30px auto;
+   overflow: scroll;
+}
+.item-section i{
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--main-color-d);
+}
+.item-section .loding-bar{
+    width: 2px;
+    background-color: var(--main-color-d);
+}
+
+.item-section .btn-add{
+    margin-right: 25px;
+}
+
+.item-section .td-title{
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.item-section .formInput{
+    min-width: 300px
+}
+.item-section .edit-control{
+    text-align: right;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+}
+.item-section .edit-control button{
+    margin-left: 50px;
+}
+.item-section .loding-item{
+    position: absolute;
+    top: 80px;
+    right: 48%;
+    text-align: center;
+}
+.item-section .sort-item{
+    position: absolute;
+    top: 60px;
+    left: 10%;
+    text-align: center;
+}

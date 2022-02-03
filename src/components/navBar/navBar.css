@@ -9,9 +9,10 @@
   font-family: var(--font-ar-c);
   font-size: 16px;
 }
-.header .hr{
-  border: 1px solid #fff;
+.header .nav-hr{
+    border: 1px solid #fff;
     width: 81%;
+    height: 0;
     float: right;
     margin-right: 58px;
     margin-top: 9px;
@@ -159,7 +160,9 @@
 }
  /*Medim */
  @media (max-width: 992px) {
-
+  .header {
+    font-size: 14px;
+  }
  }
 /*Small */
 @media (max-width: 768px) {
@@ -173,7 +176,7 @@
     height: 47px;
     background: var(--baner-back);
   }
-  .hr{
+  .nav-hr{
     visibility: hidden;
   }
   .title{
@@ -232,7 +235,7 @@
    transition: width 2s, visibility 1s, opacity 0.5s linear;
    margin-top: -40px;
   }
-  .banner .nav-con.close {
+  .banner .nav-con.close-nav {
     visibility: hidden;
     opacity: 0;
     transform: translateY(-30px) ;

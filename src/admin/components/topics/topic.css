@@ -1,0 +1,7 @@
+.data-list{
+    display: inline-block;
+    margin: 50px 20px;
+}
+.data-list li{
+    list-style: none;
+}

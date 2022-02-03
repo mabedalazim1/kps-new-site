@@ -23,7 +23,6 @@ body{
   background-color:  var(--body-color);
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
 
 .main-title{
@@ -49,3 +48,12 @@ body{
   color: red;
   margin: 10px;
 } 
+.btn-success{
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  padding: 6px 12px !important;
+}
+.btn-success:hover{
+  background-color: #198532 !important;
+  border-color: #208d3a !important;
+}

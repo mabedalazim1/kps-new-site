@@ -1,0 +1,91 @@
+.admin-dashboard{
+    background-color: #fff;
+    padding: 15px;
+}
+
+.topbar{
+    position: static;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    text-align: left;
+    margin-bottom: 5px;
+    color: var(--main-color);
+}
+.topbar .closeSymbol{
+    width: 22px;
+    font-weight: bold;
+}
+.topbar .mobile-menu {
+    position: absolute;
+     width: 30px;
+     right: 17px;
+     top: 10px;
+     visibility: hidden;
+ }
+ .topbar .mobile-menu img{
+    cursor: pointer;
+ }
+ 
+ .topbar .mobile-menu.active{
+    visibility: visible;
+    transition: 0.5s;
+ }
+ .topbar .mobile-menu.active::after{
+  position: absolute;
+    content: "";
+    z-index: 100;
+    top: -5px;
+    left: -5px;
+    cursor: pointer;
+    right: -5px;
+    bottom: -5px;
+ }
+.admin-board{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+.admin-board.close-mnue{
+   display: block;
+   opacity: 1 !important;
+}
+.admin-board .main-contant{
+    flex: 8;
+    text-align: right;
+    padding-right: 10px;
+}
+.admin-board .main-contant.close-mnue{
+    flex: 1;
+    margin-top: 50px;
+    opacity: 1 !important;
+}
+.admin-board .sidebar{
+    flex:2;
+    text-align: right;
+    border-radius: 10px;
+    font-family: var(--font-ar-c);
+    font-size: 15px;
+    z-index: 5;
+}
+.admin-board .sidebar.close-mnue{
+    display: none;
+}
+
+.admin-board .sidebar.active{
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    width: 85%;
+    opacity: .95;
+}
+
+.admin-board .sidebar.active li{
+    text-align: center;
+}
+
+.admin-board .sidebar.active li a::after{
+    right: -70px; 
+}

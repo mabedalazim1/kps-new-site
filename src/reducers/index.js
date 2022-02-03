@@ -5,6 +5,8 @@ import isLogged from './logeed'
 import auth from "./auth"
 import message from "./message"
 import authedUser from "./authedUser"
+import dataMessage from './../admin/reducers/dataMessage'
+import imgSections from './../admin/reducers/imgSection' 
 
 export default combineReducers({
   imageUrl,
@@ -12,5 +14,7 @@ export default combineReducers({
   auth,
   authedUser,
   message,
+  dataMessage,
+  imgSections,
   loadingBar : loadingBarReducer,
   })

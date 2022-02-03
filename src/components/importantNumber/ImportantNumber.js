@@ -11,23 +11,23 @@ const ImportantNumber = () => {
                     } }
                 >
                     <div className='overlay'>
-                        <div class='container contant'>
-                            <div class='row'>
-                                <div class='col-md col-numbers'>
+                        <div className='container contant'>
+                            <div className='row'>
+                                <div className='col-md col-numbers'>
                                     <div className='icon-con'>
-                                    <i class="fas fa-bookmark"></i>
+                                    <i className="fas fa-bookmark"></i>
                                    <p className='text-no'>65</p>
                                     </div>
                                    
                                    <p className='text-title'>معلم متخصص</p> 
                                 </div>
-                                <div class='col-md col-numbers'>
+                                <div className='col-md col-numbers'>
                                     2
                                 </div>
-                                <div class='col-md col-numbers'>
+                                <div className='col-md col-numbers'>
                                     3
                                 </div>
-                                <div class='col-md col-numbers'>
+                                <div className='col-md col-numbers'>
                                     4
                                 </div>
                             </div>

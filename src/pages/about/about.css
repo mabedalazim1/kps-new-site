@@ -1,0 +1,56 @@
+.about-page .about-text{
+    margin-top: 60vh;
+}
+
+.about-page .welcome{
+    display: flex;
+    flex-direction: row;
+    margin:50px 20px;
+    font-family: var(--font-ar-c);
+    font-size: 14px;
+    color: #777;
+    line-height: 3;
+    direction: rtl;
+    text-align: justify;
+    font-size: 16px;
+}
+.about-page .text{
+    flex: 1;
+    min-width: 50%;
+    padding: 20px;
+}
+.about-page .text i{
+    margin: -20px 0 0;
+    padding-right: 50px;
+    font-size: 10px;
+    
+    color: var(--main-color-d);
+}
+.about-page .text .text-con{
+    margin-top: -20px;
+}
+.about-page .about-img{
+    border: 3px solid var(--main-color);
+    flex: 1;
+    min-width: 50%;
+    background-position: center ;
+    background-repeat: no-repeat;
+    background-size: contain ; 
+}
+.about-page .text-icon-left{
+    text-align: left;
+    padding-left: 50px;
+    margin-top: -20px;
+}
+
+/*Medim */
+@media (max-width: 992px) {
+   
+}
+/*Small */
+@media (max-width: 768px) {
+    .about-page .welcome{
+        flex-direction: column;
+    }
+
+}

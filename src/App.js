@@ -3,18 +3,20 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./actions/auth";
-import { history } from "./helpers/history";
 import EventBus from "./common/EventBus";
-
 import Home from './pages/home/Home'
 import NotFound from './pages/notFound/NotFound';
 import About from './pages/about/About';
 import ContactUs from './pages/contactUs/ContactUs';
-import Admin from './pages/admin/Admin';
 import Manasa from './pages/manasa/Manasa';
+import AdminDashboard from './admin/AdminDashboard'
+import ImageContant from './admin/pages/imageContant/ImageContant'
+import ImageSection from './admin/pages/imageSection/ImageSection';
+import Forms from './admin/components/formInput/Forms';
+import AdminHome  from './admin/pages/home/AdminHome';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
@@ -51,9 +53,14 @@ function App() {
           <Route path='roiaa' element={<Roiaa />} />
           <Route path='contactus' element={<ContactUs />} />                   
         </Route>
-        
+        <Route path='/admin' element={ <AdminDashboard /> } >
+            <Route path='home' element={ <AdminHome /> } />
+            <Route path='imageContant' element={ <ImageContant /> } />
+            <Route path='sections' element={ <ImageSection /> } />
+            <Route path='forms' element={ <Forms /> } />
+            
+          </Route>
         <Route path='manasa' element={<Manasa />} />
-        <Route path='admin' element={<Admin />} />
         <Route path='login' element={<Login />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

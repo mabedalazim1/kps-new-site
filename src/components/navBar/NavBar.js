@@ -6,7 +6,6 @@ import menuSymbol from './../../assest/svg/menu.svg'
 import { logout } from "./../../actions/auth";
 import { useDispatch, useSelector } from "react-redux"
 import useScroll from './../../hooks/useScroll'
-import history from '../../helpers/history'
 import './navBar.css'
 
 const NavBar = () => {
@@ -20,9 +19,7 @@ const NavBar = () => {
   
   const handleClick = () => setClick(!click)
   const closeMenu = () => setClick(false)
-  const addLink = (link) => {
-    history.push(link)
-  }
+  
   const navItems = [
     {title:"الرئيسية",link:"/"},
     {title:"المنصة",link:"/manasa"},
@@ -37,7 +34,7 @@ const NavBar = () => {
     }
   }
   useEffect(() => {
-     changNavBar()
+    changNavBar()
   })
 
   
@@ -61,7 +58,7 @@ const NavBar = () => {
               <img src='assets/images/logo-b.png' alt='logo'
                 className={ navBar ? 'logo-b active':'logo-b'} />
             </div>
-            <ul className={ click ? 'nav-con' : navBar ? 'nav-con active close' : 'nav-con close' }>
+            <ul className={ click ? 'nav-con' : navBar ? 'nav-con active close-nav' : 'nav-con close-nav' }>
              
               <div className='login-con'>
 
@@ -89,12 +86,11 @@ const NavBar = () => {
                 <NavbarItem
                   navItems={ navItems }
                   closeMenu={ closeMenu }
-                  addLink={addLink}
                 />
               </div>
             </ul>
           </div>
-          <hr className='hr' />
+          <hr className='nav-hr' />
           <div className='mobile-menu' onClick={handleClick}>
             {click ? (
               <img alt='' src={closeSymbol} />

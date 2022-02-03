@@ -1,7 +1,7 @@
 import{ useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
-const NavbarItem = ({ navItems, closeMenu, addLink }) => {
+const NavbarItem = ({ navItems, closeMenu }) => {
     const loction = useLocation().pathname
 
     return (
@@ -10,7 +10,6 @@ const NavbarItem = ({ navItems, closeMenu, addLink }) => {
                 <li key={ index }
                     onClick={ () => {
                         closeMenu()
-                       addLink(navItem.link)
                     } }
                     className={navItem.link === `${loction}` ? "active" : null }
                 >

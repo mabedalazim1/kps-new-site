@@ -1,0 +1,23 @@
+.modal-dialog{
+    max-width: 400px;
+}
+.modal-title{
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-ar-c);
+    font-size: 15px;
+}
+.modal-body{
+    color: rgb(255, 0, 0);
+    display: flex;
+    direction: rtl;
+}
+
+.modal-footer{
+    display: flex;
+   margin: 0 10px; 
+   justify-content: space-between;
+}
+.modal-sub-title{
+    color:#000;
+}
