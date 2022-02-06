@@ -19,7 +19,48 @@
     padding: 5px;
     font-size: 15px;
 }
-
+.img-data .img-con{
+    border: 1px solid var(--main-color);
+    width: 300px;
+    border-radius: 5px;
+    height: 200px;
+    margin: 10px auto;
+    position: relative;
+}
+.img-con img{
+    position: absolute;
+    top:15%;
+    left: 50%;
+    transform: translate(-50%);
+    height: 150px;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+}
+.img-data .img-con.local img{
+    height: 188px;
+    top: 5px;
+    border-radius: 5px;
+    
+} 
+.img-con img:hover{
+    height: 155px;
+    opacity: .9;
+}
+.img-data .btn-con{
+    width: 100%;
+    margin: 135px auto 0;
+    text-align: center;
+    position: relative;
+}
+.img-con .input-file{
+    top: 50px;
+    width: 0 ;
+}
+.img-data .progress{
+    width: 50% !important;
+    margin: 10px auto;
+}
 /*Medim */
 @media (max-width: 992px) {
     
@@ -34,5 +75,7 @@
     .img-data h6{
         width: 80px;
     }
-
+    .img-data .progress{
+        width: 80% !important;
+    }
 }

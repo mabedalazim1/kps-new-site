@@ -2,9 +2,10 @@ import './imgData.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Progress from '../../components/progress/Progress';
 import { getImgSectionCatgorey } from './../../actions/imgCatBySection'
+import Message from '../../components/message/Message';
 import { retrieveImgCatogeryById } from './../../actions/imageCategory'
 import { retrieveImgSectionById } from './../../actions/imgSection'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const ImageData = () => {
@@ -14,7 +15,10 @@ const ImageData = () => {
   const [uploadedFile, setUploadedFile] = useState({});
   const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
-  const [posts, setPosts] = useState([])
+  const [localFile, setLocalFile] = useState([])
+  const [backImg, setBackImg] = useState(false)
+  const inputRef = useRef(null)
+  const submitRef = useRef(null)
 
   const dispatch = useDispatch()
   const imgCatogery = useSelector(state => state.imgCatogery)
@@ -23,6 +27,11 @@ const ImageData = () => {
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
+    const formData = new FormData();
+    formData.append('image', file);
+
+    setLocalFile(URL.createObjectURL(e.target.files[0]))
+    
   };
 
   const fetchData = () => {
@@ -34,11 +43,14 @@ const ImageData = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  const onSubmit = async e => {
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+  }
+  const handelInputClick = async e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('image', file);
-    console.log(file)
+    formData.append('image', file)
 
     try {
       const baseURL = process.env.REACT_APP_SERVER_URL
@@ -58,12 +70,12 @@ const ImageData = () => {
       });
 
       // Clear percentage
-      setTimeout(() => setUploadPercentage(0), 10000);
-
+      setTimeout(() => {
+        setUploadPercentage(0)
+        setBackImg(!backImg)
+      }, 1000);
       const { fileName, filePath } = res.data;
-
       setUploadedFile({ fileName, filePath });
-
       setMessage('File Uploaded');
     } catch (err) {
       if (err.response.status === 500) {
@@ -72,6 +84,7 @@ const ImageData = () => {
         setMessage(err.response.data.msg);
       }
       setUploadPercentage(0)
+      
     }
   };
   return (
@@ -98,28 +111,54 @@ const ImageData = () => {
             No
           </>
         ) }
-      <h4 className='text-center mt-2'>Image Data</h4>
-      <form onSubmit={ onSubmit }>
+      <h5 className='text-center mt-3'>إضافة صورة</h5>
+      <form onSubmit={onSubmit}>
         <div className='custom-file mb-4'>
-          <input
+          <div className={ localFile.length ===0 ? 'img-con' : 'img-con local'}>
+            <img src={
+              localFile.length === 0 ? '/assets/images/cam.png':
+              backImg ? '/assets/images/cam.png' : localFile
+            }
+              alt='img'
+              onClick={ () => {
+                uploadPercentage === 0 && inputRef.current.click()
+                setBackImg(false)
+              } }
+            />
+             <input
             type='file'
-            className='custom-file-input'
+            className='custom-file-input input-file'
             id='customFile'
             onChange={ onChange }
+             ref={ inputRef }
           />
-          <label className='custom-file-label' htmlFor='customFile'>
-            { filename }
-          </label>
+          </div>
+         
+         
         </div>
-
-        <Progress percentage={ uploadPercentage } />
-
-        <input
-          type='submit'
-          value='Upload'
-          className='btn btn-primary btn-block mt-4'
-        />
       </form>
+      <div className='btn-con'>
+            <button
+          className='btn btn-success mt-4 mr-4'
+          onClick={ handelInputClick }
+          disabled={ localFile.length !== 0 && !backImg  ? false : true}
+        >
+          حفظ
+        </button>
+        <button className='btn btn-info mt-4 mr-4'
+          onClick={ () => inputRef.current.click() }
+          ref={ submitRef }
+          disabled={ uploadPercentage === 0 ? false : true}
+        >
+          اختر 
+        </button>
+        <Progress percentage={ uploadPercentage } />
+        
+        { message &&
+          <Message msg={ message } delay={ 1000 } />
+        }
+      </div>
+      
     </section>
 
   )

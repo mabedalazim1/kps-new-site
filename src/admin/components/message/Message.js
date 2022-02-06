@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-const Message = ({ msg, delay , handelCancel }) => {
+const Message = ({ msg, delay  }) => {
   const [isVisible, setIsVisible] = useState(true); 
 
   const setTimer = (delay) =>
     {
     setTimeout(() => {
       setIsVisible(false)
-      handelCancel()
     }, delay);
     };
 

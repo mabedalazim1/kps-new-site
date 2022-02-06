@@ -10,7 +10,7 @@ import {
     updateImgCatogery,
 } from './../../actions/imageCategory'
 import { getImgCatogeryData } from '../../actions/imgDataByCat'
-import { } from '../../actions/imgDataByCat'
+import { retrieveImgSections } from '../../actions/imgSection'
 import {
     getImgSectionCatgorey,
 } from './../../actions/imgCatBySection'
@@ -80,6 +80,7 @@ const ImageCategory = () => {
 
     const fetchData = () => {
         dispatch(showLoading())
+        dispatch(retrieveImgSections())
         dispatch(retrieveImgCatogeries())
         dispatch(getImgSectionCatgorey())
     }
