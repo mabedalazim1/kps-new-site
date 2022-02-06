@@ -26,7 +26,7 @@ const update = (modle = "imgdata", id, data) => {
   
   const findByTitle = (modle = "imgdata",title) => {
     return http.get(`${modle}?title=${title}`);
-  };
+};
   
   const CurdService = {
     getAll,

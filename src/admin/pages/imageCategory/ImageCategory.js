@@ -2,19 +2,26 @@ import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { showLoading } from 'react-redux-loading-bar'
 import Loading from '../../components/loading/Loading'
-import { formChange, formubmit } from '../../services/formPost'
+import { formChange, formsubmit } from '../../services/formPost'
 import {
     retrieveImgCatogeries,
     retrieveImgCatogeryById,
     deleteImgCatogery,
     updateImgCatogery,
-} from '../../actions/imageCategory'
-import './../../components/itemCurd/itemSection.css'
-import UpdateItem from '../../components/itemCurd/UpdateItem'
-import ItemList from '../../components/itemCurd/ItemList'
-import AddItem from '../../components/itemCurd/AddItem'
+} from './../../actions/imageCategory'
+import { getImgCatogeryData } from '../../actions/imgDataByCat'
+import { } from '../../actions/imgDataByCat'
+import {
+    getImgSectionCatgorey,
+} from './../../actions/imgCatBySection'
+import './../../itemSection.css'
+import AddImgCatgery from './AddImgCatgery'
+import ListImgCatgery from './ListImgCatgery'
+import UpdateImgCatgery from './UpdateImgCatgery'
 import DeleteModal from '../../components/modal/Modal'
 import Message from '../../components/message/Message'
+import ImgGallery from './ImgGallery'
+import { useNavigate } from 'react-router-dom'
 
 const ImageCategory = () => {
     // Form data
@@ -22,12 +29,14 @@ const ImageCategory = () => {
         title: "",
         catDesc: "",
     }
+
     const tablename = {
         mainTitle: "الموضوعات",
         subTitle: "موضوع",
         tableHeadTitleA: "الموضوع",
         tableHeadTitleB: "الوصف",
-        tableHeadTitleC: "تعديل / حذف",
+        tableHeadTitleC: "القسم",
+        tableHeadTitleD: "تعديل / حذف",
     }
     const [values, setValues] = useState(initialState)
     const inputs = [
@@ -45,7 +54,7 @@ const ImageCategory = () => {
             id: 2,
             name: "catDesc",
             label: "الوصف ",
-            errorMessage: "Section Desc is required",
+            errorMessage: "Object Desc is required",
             placeholder: "اضف وصف للموضوع",
             type: "text",
             required: true
@@ -62,14 +71,17 @@ const ImageCategory = () => {
     const [disable, setDisable] = useState(false)
 
     const btnUpdate = useRef(null)
-    const items = useSelector(state => state.imgSections)
+    const catItems = useSelector(state => state.imgCatogery)
+    const catSection = useSelector(state => state.imgCatBySection)
     const errorMessage = useSelector(state => state.message)
     const dataMessage = useSelector(state => state.dataMessage)
+    const catogeryData = useSelector(state => state.imgCatogryData)
     const dispatch = useDispatch()
 
     const fetchData = () => {
         dispatch(showLoading())
         dispatch(retrieveImgCatogeries())
+        dispatch(getImgSectionCatgorey())
     }
     useEffect(() => {
         fetchData()
@@ -83,37 +95,40 @@ const ImageCategory = () => {
         return () => clearTimeout(timer);
     }, [loadItem]);
 
-   
+
     const sortItemClick = () => {
-             if (sortIcon === "sort-item fas fa-sort-alpha-down-alt") {
-                 setSortIcon("sort-item fas fa-sort-alpha-up")
-                 items.slice(0).reverse()
+        if (sortIcon === "sort-item fas fa-sort-alpha-down-alt") {
+            setSortIcon("sort-item fas fa-sort-alpha-up")
+            catItems.slice(0).reverse()
         } else {
             setSortIcon("sort-item fas fa-sort-alpha-down-alt")
         }
         setSortItems(!sortItems)
     }
-  
+
     const handleSubmit = (e) => {
         setLoadItem(!loadItem)
-        formubmit("imgsections", e)
+        formsubmit("imgcatogery", e)
         setValues(initialState)
         setAddItem(!addItem)
         setLoadItem(!loadItem)
     }
+
     const onChange = (e) => {
         formChange(setValues, values, e)
     }
     const editItemById = (id) => {
         dispatch(retrieveImgCatogeryById(id))
+        dispatch(getImgCatogeryData(id))
+
     }
     const handelDelete = () => {
-        dispatch(deleteImgCatogery(items.id))
+        dispatch(deleteImgCatogery(catItems.id))
         setEditItem(!editItem)
         setLoadItem(true)
     }
     const handelEdit = (item) => {
-        const { id, title, sectionDesc } = item
+        const { id, title, catDesc, imageSectionId } = item
         setEditItem(!editItem)
         editItemById(id)
         setCurrentId(id)
@@ -121,8 +136,10 @@ const ImageCategory = () => {
         setCurrentItem({
             id,
             title,
-            sectionDesc,
+            catDesc,
+            imageSectionId,
         })
+        localStorage.setItem("secId", imageSectionId )
     }
     const updateItem = (id) => {
         dispatch(updateImgCatogery(id, currentItem))
@@ -137,9 +154,9 @@ const ImageCategory = () => {
     return (
         <div className='container item-section'>
             { errorMessage.message }
-            { currentId !== 0 ? <h4>تعديل</h4> :
+            { currentId !== 0 ? <h4>تعديل { tablename.tableHeadTitleA }</h4> :
                 addItem && !editItem ? <h4>إضافة { tablename.subTitle }</h4> : <h4> { tablename.mainTitle }</h4> }
-            { items.length === 0 ? (
+            { catItems.length === 0 ? (
                 <Loading error={ errorMessage.message } />
             ) : (
                 <>
@@ -151,7 +168,7 @@ const ImageCategory = () => {
                     </button>
                     }
                     { addItem && !editItem ? (
-                        <AddItem
+                        <AddImgCatgery
                             handleSubmit={ handleSubmit }
                             onChange={ onChange }
                             inputs={ inputs }
@@ -160,35 +177,36 @@ const ImageCategory = () => {
                             setAddItem={ setAddItem }
                             errorMessage={ errorMessage }
                         />
-                    ) : !editItem && items.length > 1 ? (
+                    ) : !editItem && catItems.length > 1 ? (
                         <>
                             { loadItem ? <p className='loding-item'> Loading ... </p>
                                 : <p className='loding-item'></p> }
-                                    <i onClick={()=>{
-                                        sortItemClick()
-                                    }}
+                            <i onClick={ () => {
+                                sortItemClick()
+                            } }
                                 className={ sortIcon }
                                 title='Sort Data - ترتيب'
                             > </i>
-                                    <ItemList
-                                        tablename={ tablename }
-                                        handelEdit={ handelEdit }
-                                        items={ items }
-                                        sortItems={ sortItems }
-                                        
+                            <ListImgCatgery
+                                tablename={ tablename }
+                                handelEdit={ handelEdit }
+                                catSection={ catSection }
+                                sortItems={ sortItems }
+
                             />
                         </>
                     ) : editItem &&
                     <div>
-                        <UpdateItem
+                        <UpdateImgCatgery
                             currentItem={ currentItem }
                             setCurrentItem={ setCurrentItem }
                             btnUpdate={ btnUpdate }
+                            inputs={ inputs }
                         />
                         <div className='edit-control'>
                             <button
                                 onClick={ () => {
-                                    updateItem(items.id)
+                                    updateItem(catItems.id)
                                     setDisable(true)
                                 } }
                                 className='btn btn-success'
@@ -204,7 +222,7 @@ const ImageCategory = () => {
                             </button>
                             <DeleteModal
                                 handelDelete={ handelDelete }
-                                name={ items.title }
+                                name={ catItems.title }
                             />
                         </div>
                         { dataMessage.message &&
@@ -222,11 +240,58 @@ const ImageCategory = () => {
                                 />
                             </div>
                         }
+                        {/* <ImgGallery
+                            catogeryData={ catogeryData }
+                            currentItem={ currentItem }
+                            handelCancel={ handelCancel }
+                        /> */}
+                        <div className='img-gallery'>
+                            <h5>معرض الصور</h5>
+
+                            <section className='img-data'>
+                                <AddImage />
+                                { !catogeryData ? <h6 >لا يوجد صور لهذا الموضوع</h6> : catogeryData.map((catogery, index) => (
+
+                                    <div key={ index }>
+                                        <p>{ catogery.imgDesc }</p>
+                                        <p>{ catogery.imgUrl }</p>
+                                        <img src={ catogery.imgUrl } alt="img" />
+                                    </div>
+
+                                )) }
+                            </section>
+                            { catogeryData.length > 3 &&
+                                <>
+                                    <AddImage />
+                                    <button
+                                        className='btn btn-primary'
+                                        onClick={ handelCancel }
+                                    >
+                                        رجوع
+                                    </button>
+                                </>
+                            }
+                        </div>
                     </div>
                     }
                 </>
             ) }
         </div>
     )
+}
+const AddImage = () => {
+    const navigate = useNavigate()
+    const addHandel = () => {
+        navigate('/admin/addimage')
+    }
+    return (
+        <div className='add-img'>
+            <button
+                className='btn btn-outline-success'
+                onClick={ addHandel }
+            >إضافة صورة</button>
+        </div>
+    )
+
 }
 export default ImageCategory

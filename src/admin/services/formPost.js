@@ -1,6 +1,6 @@
 import axios from 'axios'
 let option = {}
-export const formubmit = (modle = "", e) => {
+export const formsubmit = (modle = "", e) => {
     e.preventDefault();
     const data = new FormData(e.target)
     const add = Object.fromEntries(data.entries())

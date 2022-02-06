@@ -1,6 +1,6 @@
 import {  useSelector } from "react-redux"
 
-const UpdateItem = ({  setCurrentItem, currentItem, }) => {
+const UpdateImgSection = ({  setCurrentItem, currentItem, }) => {
    
     const errorMessage = useSelector(state => state.message)
 
@@ -42,4 +42,4 @@ const UpdateItem = ({  setCurrentItem, currentItem, }) => {
     )
 }
 
-export default UpdateItem
+export default UpdateImgSection

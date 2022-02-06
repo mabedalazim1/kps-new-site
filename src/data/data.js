@@ -259,6 +259,6 @@ const handelDataB = () => {
 handelData()
 
 const slideData = new Object({...data })
-console.log(Object.keys(slideData).length)
+
 
 export { slideData, featuredData }

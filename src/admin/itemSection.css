@@ -1,9 +1,10 @@
 .item-section{
-    margin: auto;
+    margin: 0 auto;
     min-width: 350px;
     width: 100%;
     min-height: 81vh;
-  position: relative;
+   position: relative;
+
 }
 .item-section h4{
     text-align: center;
@@ -20,6 +21,9 @@
     cursor: pointer;
     font-size: 20px;
     color: var(--main-color-d);
+}
+.item-section i:hover{
+    color: #157347;
 }
 .item-section .loding-bar{
     width: 2px;
@@ -59,4 +63,7 @@
     top: 60px;
     left: 10%;
     text-align: center;
+}
+.item-section input{
+    margin: 30px 0px !important;
 }

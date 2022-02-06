@@ -7,6 +7,10 @@ import message from "./message"
 import authedUser from "./authedUser"
 import dataMessage from './../admin/reducers/dataMessage'
 import imgSections from './../admin/reducers/imgSection' 
+import imgCatogery from './../admin/reducers/imgCatogery' 
+import imgData from './../admin/reducers/imgData' 
+import imgCatogryData from './../admin/reducers/imgCatogeryData' 
+import imgCatBySection from './../admin/reducers/imgCatBySection' 
 
 export default combineReducers({
   imageUrl,
@@ -16,5 +20,9 @@ export default combineReducers({
   message,
   dataMessage,
   imgSections,
+  imgCatogery,
+  imgCatBySection,
+  imgData,
+  imgCatogryData,
   loadingBar : loadingBarReducer,
   })

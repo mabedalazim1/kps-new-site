@@ -1,0 +1,20 @@
+.img-gallery{
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+}
+.img-gallery h6{
+    margin-top: 10px;
+    color: red;
+    text-align: center;
+    margin-right: 50px;
+}
+.img-data{
+    padding-top:10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+ .add-img{
+    text-align: right;
+}

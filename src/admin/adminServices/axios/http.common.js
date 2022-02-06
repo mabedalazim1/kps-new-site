@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {Navigate} from 'react-router-dom'
 const user = JSON.parse(localStorage.getItem("user"));
 let accessToken = ''
 

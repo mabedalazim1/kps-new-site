@@ -13,11 +13,12 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
+    
 }
 .formInput input{
     padding: 10px;
     margin: 10px 0;
-    width: 300px;
+    width: 500px;
 }
 
 .formInput label{
@@ -41,10 +42,25 @@
 }
 .button-con{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .button-con button{
     margin:  5px;
     min-width: 70px;
     text-align: center;
 }
+
+/*Medim */
+@media (max-width: 992px) {
+   
+   }
+  /*Small */
+  @media (max-width: 768px) {
+    .form-con{
+        width: 100%;
+    }
+    .formInput input{
+      margin: auto;
+      width: 400px;
+    }
+    }

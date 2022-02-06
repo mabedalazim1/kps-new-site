@@ -14,9 +14,10 @@ const Sidebar = ({ handleClick }) => {
     }
   const listTitel = [
    { title: "احصائيات",link:"home"},
-   {title: "الموضوعات",link:"imageContant"},
+   {title: "رفع صورة",link:"imageContant"},
     { title: "الأقسام", link: "sections" },
     { title: "الموضوعات", link: "categories" },
+    { title: "إضافة صورة", link: "addimage" },
     {title: "النماذج",link:"forms"},
   ]
   return (

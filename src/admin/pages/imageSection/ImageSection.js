@@ -2,17 +2,17 @@ import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { showLoading } from 'react-redux-loading-bar'
 import Loading from '../../components/loading/Loading'
-import { formChange, formubmit } from './../../services/formPost'
+import { formChange, formsubmit } from './../../services/formPost'
 import {
     retrieveImgSections,
     retrieveImgSectionById,
     deleteImgSection,
     updateImgSection,
 } from './../../actions/imgSection'
-import './../../components/itemCurd/itemSection.css'
-import UpdateItem from './../../components/itemCurd/UpdateItem'
-import ItemList from './../../components/itemCurd/ItemList'
-import AddItem from './../../components/itemCurd/AddItem'
+import './../../itemSection.css'
+import UpdateImgSection from './UpdateImgSection'
+import ListImgSection from './ListImgSection'
+import AddImgSection from './AddImgSection'
 import DeleteModal from '../../components/modal/Modal'
 import Message from '../../components/message/Message'
 
@@ -74,7 +74,7 @@ const ImageSection = () => {
     useEffect(() => {
         fetchData()
         return
-    }, [loadItem])
+    }, [])
 
     useEffect(() => {
         const timer = setTimeout(() =>
@@ -96,7 +96,7 @@ const ImageSection = () => {
   
     const handleSubmit = (e) => {
         setLoadItem(!loadItem)
-        formubmit("imgsections", e)
+        formsubmit("imgsections", e)
         setValues(initialState)
         setAddItem(!addItem)
         setLoadItem(!loadItem)
@@ -137,7 +137,7 @@ const ImageSection = () => {
     return (
         <div className='container item-section'>
             { errorMessage.message }
-            { currentId !== 0 ? <h4>تعديل</h4> :
+            { currentId !== 0 ? <h4>تعديل  { tablename.tableHeadTitleA} </h4> :
                 addItem && !editItem ? <h4>إضافة { tablename.subTitle }</h4> : <h4> { tablename.mainTitle }</h4> }
             { items.length === 0 ? (
                 <Loading error={ errorMessage.message } />
@@ -151,7 +151,7 @@ const ImageSection = () => {
                     </button>
                     }
                     { addItem && !editItem ? (
-                        <AddItem
+                        <AddImgSection
                             handleSubmit={ handleSubmit }
                             onChange={ onChange }
                             inputs={ inputs }
@@ -170,7 +170,7 @@ const ImageSection = () => {
                                 className={ sortIcon }
                                 title='Sort Data - ترتيب'
                             > </i>
-                                    <ItemList
+                                    <ListImgSection
                                         tablename={ tablename }
                                         handelEdit={ handelEdit }
                                         items={ items }
@@ -180,7 +180,7 @@ const ImageSection = () => {
                         </>
                     ) : editItem &&
                     <div>
-                        <UpdateItem
+                        <UpdateImgSection
                             currentItem={ currentItem }
                             setCurrentItem={ setCurrentItem }
                             btnUpdate={ btnUpdate }

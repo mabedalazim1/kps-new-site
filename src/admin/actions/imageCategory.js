@@ -6,7 +6,7 @@ import {
     DELETE_IMGCATOGERY,
     DELETE_ALL_IMGCATOGERIES,
     SET_DATA_MESSAGE,
-    CLEAR_DATA_MESSAGE,
+  CLEAR_DATA_MESSAGE,
   } from './types'
   import { SET_MESSAGE, CLEAR_MESSAGE } from './../../actions/types'
   
@@ -56,6 +56,7 @@ import {
         type: SET_DATA_MESSAGE,
         payload:res.data.message,
       })
+      localStorage.removeItem('catId')
     } catch (err) {
       const message = err.message
       dispatch({
@@ -69,7 +70,7 @@ import {
     }
   }
   
-  
+
   export const retrieveImgCatogeryById = (id) => async (dispatch) => {
     try {
       const res = await CurdService.get(modle, id);

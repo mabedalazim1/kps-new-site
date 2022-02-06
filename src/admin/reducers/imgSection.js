@@ -4,7 +4,8 @@ import {
   RETRIEVE_IMGSECION_ID,
   UPDATE_IMGSECTION,
   DELETE_IMGSECTION,
-  DELETE_ALL_IMGSECTIONS
+  DELETE_ALL_IMGSECTIONS,
+  GET_IMG_SECTION_CATOGERY,
 } from './../actions/types'
 
 const initialState = []
@@ -18,6 +19,7 @@ const imgSectionReducer = (imgSection = initialState, action) => {
 
     case RETRIEVE_IMGSECTIONS:
       return payload
+    
     case RETRIEVE_IMGSECION_ID:
       return payload
 

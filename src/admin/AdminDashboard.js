@@ -11,6 +11,7 @@ const   AdminDashboard = () => {
     const [click, setClick] = useState(true)
     const handleClick = () => {
         setClick(!click)
+        localStorage.removeItem("catId")
     }
 
     return (

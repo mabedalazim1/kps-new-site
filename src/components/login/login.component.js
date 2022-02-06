@@ -15,7 +15,6 @@ const Login = (props) => {
   const dispatch = useDispatch()
 
   const [oldhistory, setOldhistory] = useState()
-  console.log("oldhistory", oldhistory)
 
   useEffect(() => {
     setOldhistory(history.location.pathname)

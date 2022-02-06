@@ -1,6 +1,6 @@
 import FormInput from "../../components/formInput/FormInput";
 
-const AddItem = ({handleSubmit,inputs,values, onChange,addItem, setAddItem, errorMessage}) => {
+const AddImgSection = ({handleSubmit,inputs,values, onChange,addItem, setAddItem, errorMessage}) => {
     return (
         <div className="form-con">
                             <form onSubmit={ handleSubmit }>
@@ -31,4 +31,4 @@ const AddItem = ({handleSubmit,inputs,values, onChange,addItem, setAddItem, erro
     );
 }
 
-export default AddItem;
+export default AddImgSection;
