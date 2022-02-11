@@ -6,6 +6,10 @@ import menuSymbol from '../assest/svg/menu.svg'
 import Topbar from "./components/topbar/Topbar";
 import { Outlet } from 'react-router-dom'
 import useWindowSize from './../hooks/useWindowSize'
+import Footer from "./components/footer/Footer";
+import { Navigate } from 'react-router-dom';
+import {  useSelector } from 'react-redux'
+
 const   AdminDashboard = () => {
     const { width } = useWindowSize() 
     const [click, setClick] = useState(true)
@@ -13,32 +17,41 @@ const   AdminDashboard = () => {
         setClick(!click)
         localStorage.removeItem("catId")
     }
-
+    const { user } = useSelector(state => state.auth)
+   
     return (
-        <main className="admin-dashboard">
-            <div className="topbar">
-                <div className={ width >768 ?'mobile-menu': "mobile-menu active"}
-                    onClick={ handleClick }>
-            {!click ? (
-                <img className="closeSymbol"alt='' src={closeSymbol} />
-            ) : (
-                <img alt='' src={menuSymbol} />
-            )}
-          </div>
-                <Topbar />
-            </div>
-            <div className={width > 768 ?"admin-board":"admin-board close-mnue"}>
-            <div className={width > 768 ?"main-contant":"main-contant close-mnue"}>
-              <Outlet />
-            </div>
-            <div className={width > 768  ?"sidebar": click ?"sidebar close-mnue":"sidebar close-mnue active"}>
-                    <Sidebar
-                        handleClick={ handleClick }
-                    />
+        <>
+            { !user ? <Navigate to="/login" /> : 
+               
+                <main className="admin-dashboard">
+                <div className="topbar">
+                    <div className={ width >768 ?'mobile-menu': "mobile-menu active"}
+                        onClick={ handleClick }>
+                {!click ? (
+                    <img className="closeSymbol"alt='' src={closeSymbol} />
+                ) : (
+                    <img alt='' src={menuSymbol} />
+                )}
+              </div>
+                    <Topbar />
                 </div>
-            </div>
-        </main>
-    );
+                <div className={width > 768 ?"admin-board":"admin-board close-mnue"}>
+                <div className={width > 768 ?"main-contant":"main-contant close-mnue"}>
+                        <Outlet />
+                      
+                </div>
+                <div className={width > 768  ?"sidebar": click ?"sidebar close-mnue":"sidebar close-mnue active"}>
+                        <Sidebar
+                            handleClick={ handleClick }
+                        /> 
+                    </div>
+                    </div> <Footer />
+                   
+            </main>
+            }
+        </>
+        
+    );  
 }
 
 export default AdminDashboard;

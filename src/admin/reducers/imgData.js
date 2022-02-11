@@ -49,7 +49,6 @@ const imgDataReducer = (imgData = initialState, action) => {
 
     case DELETE_ALL_IMGDATAS:
       return []
-
     default:
       return imgData
   }

@@ -20,7 +20,7 @@
 }
 
 .important-numbers .overlay{
-    background-color: rgba(0, 0, 0, .55);
+    background-color: var(--main-overlay);
     width: 100%;
     position: absolute;
     left: 0;

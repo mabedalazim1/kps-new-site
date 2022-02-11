@@ -19,7 +19,9 @@ const Message = ({ msg, delay  }) => {
   return (
   <>
      {!isVisible ? "" : 
-    <div className='alert alert-info alert-dismissible fade show' role='alert'>
+        <div className={ delay === 5000 ? 'alert alert-danger alert-dismissible fade show' :
+        'alert alert-info alert-dismissible fade show'}
+          role='alert'>
       {msg}
       <button
         type='button'

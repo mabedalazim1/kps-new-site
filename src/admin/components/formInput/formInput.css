@@ -1,9 +1,9 @@
 .form-con{
-    margin: 50px auto;
+    margin: 20px auto;
     width: 80%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
    
 }
 

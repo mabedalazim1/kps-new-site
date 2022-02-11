@@ -1,7 +1,7 @@
 .sidebar{
     position: sticky;
     top: 50px;
-    height: calc(100vh - 65px);
+    height: calc(100vh - 75px);
     background-color: #f3f3f3;
     text-align: right;
     width: 100%;

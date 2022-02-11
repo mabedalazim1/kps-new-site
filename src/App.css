@@ -17,6 +17,7 @@
 
   --baner-back: linear-gradient(90deg, var(--main-color-d),#2facac);
   --main-shadow:  -1px -1px 3px #ddd;
+  --main-overlay: rgba(0,0,0,.45);
 }
 
 body{

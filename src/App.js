@@ -19,6 +19,7 @@ import Forms from './admin/components/formInput/Forms';
 import AdminHome  from './admin/pages/home/AdminHome';
 import ImageCategory from './admin/pages/imageCategory/ImageCategory';
 import ImageData from './admin/pages/imageData/ImageData';
+import EditImage from './admin/pages/imageData/EditImage';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import Roiaa from './pages/roiaa/Roiaa';
@@ -60,6 +61,8 @@ function App() {
             <Route path='sections' element={ <ImageSection /> } />
             <Route path='categories' element={ <ImageCategory /> } />
             <Route path='addimage' element={ <ImageData /> } />
+            <Route path='editimage/:id' element={ <EditImage /> } />
+            
             <Route path='forms' element={ <Forms /> } />
             
           </Route>

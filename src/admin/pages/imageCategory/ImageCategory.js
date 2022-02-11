@@ -91,7 +91,7 @@ const ImageCategory = () => {
 
     useEffect(() => {
         const timer = setTimeout(() =>
-            setLoadItem(false), 1000)
+        setLoadItem(false), 1000)
         fetchData()
         return () => clearTimeout(timer);
     }, [loadItem]);

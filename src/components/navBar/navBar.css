@@ -142,6 +142,7 @@
   left: -60px;
   opacity: .99;
   transition: visibility 5s;
+  box-shadow: 1px 1px 1px #2facac;
 }
 .banner .navbar ul.active li::after
 {

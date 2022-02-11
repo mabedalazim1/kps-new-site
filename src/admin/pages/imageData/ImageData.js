@@ -1,58 +1,143 @@
-import './imgData.css'
 import { useDispatch, useSelector } from 'react-redux'
-import Progress from '../../components/progress/Progress';
-import { getImgSectionCatgorey } from './../../actions/imgCatBySection'
-import Message from '../../components/message/Message';
-import { retrieveImgCatogeryById } from './../../actions/imageCategory'
-import { retrieveImgSectionById } from './../../actions/imgSection'
+import { retrieveImgCatogeryById, retrieveImgCatogeries } from './../../actions/imageCategory'
+import { retrieveImgSectionById, retrieveImgSections } from './../../actions/imgSection'
+import { getImgCatogeryData, getCustmImgCatData, clearImgCatData } from '../../actions/imgDataByCat'
 import { useState, useEffect, useRef } from 'react';
+import { formChange, formImgDataSubmit } from '../../services/formPost'
 import axios from 'axios';
+import AddImgData from './AddImgData';
+import ImgUploader from './ImgUploader';
+import './imgData.css'
+import './../../itemSection.css'
+import ListImgData from './ListImgData';
 
 const ImageData = () => {
+
+  const tablename = {
+    mainTitle: "معرض الصور",
+    subTitle: "صورة",
+    tableHeadTitleA: "الصورة",
+    tableHeadTitleB: "تعديل / حذف",
+}
+  // Form data
+  const initialState = {
+    imgDesc: "",
+    imgUrl: "",
+  }
+  const [values, setValues] = useState(initialState)
+  const inputs = [
+    {
+      id: 1,
+      name: "imgDesc",
+      label: "وصف الصورة",
+      errorMessage: "Object is required",
+      placeholder: "اضف وصف للصورة",
+      type: "text",
+    },
+  ]
+    const [editItem, setEditItem] = useState(false)
+    const [loadItem, setLoadItem,] = useState(false)
+    const [currentItem, setCurrentItem] = useState()
+    const [currentId, setCurrentId] = useState(0)
+    const [sortIcon, setSortIcon] = useState("sort-item fas fa-sort-alpha-down-alt")
+    const [sortItems, setSortItems] = useState(false)
+    const [disable, setDisable] = useState(false)
+
+  const [addItem, setAddItem] = useState(false)
   const catId = localStorage.getItem('catId')
   const [file, setFile] = useState('');
-  const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState({});
+  const [filename, setFilename] = useState('');
   const [message, setMessage] = useState('');
+  const [errorDataMsg, setErrorDataMsg] = useState('');
+  const [validateData, setValidateData] = useState(false);
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [localFile, setLocalFile] = useState([])
   const [backImg, setBackImg] = useState(false)
   const inputRef = useRef(null)
   const submitRef = useRef(null)
+  const addImgData = useRef(null)
 
   const dispatch = useDispatch()
   const imgCatogery = useSelector(state => state.imgCatogery)
   const imgSection = useSelector(state => state.imgSections)
+  const imgData = useSelector(state => state.imgCatogryData)
+  const errorMessage = useSelector(state => state.message)
+  const catSection = useSelector(state => state.imgCatBySection)
   const sectionId = localStorage.getItem("secId")
-  const onChange = e => {
-    setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
-    const formData = new FormData();
-    formData.append('image', file);
-
-    setLocalFile(URL.createObjectURL(e.target.files[0]))
-    
-  };
 
   const fetchData = () => {
     if (catId) {
       dispatch(retrieveImgCatogeryById(catId))
       dispatch(retrieveImgSectionById(sectionId))
+    } else {
+      dispatch(retrieveImgCatogeries())
+      dispatch(retrieveImgSections())
     }
   }
   useEffect(() => {
     fetchData()
-  }, [])
+    return {
+    }
+  }, [catId])
+
+  const onChangeInput = (e) => {
+    formChange(setValues, values, e)
+  }
+  const onChangeSlecet = (e) => {
+    formChange(setValues, values, e)
+    setErrorDataMsg("")
+    setValidateData(true)
+    editItemById(e.target.value)
+    console.log(e.target.value)
+  }
+  const onChangeFile = e => {
+    try {
+      setMessage("")
+      const myFile = e.target.files
+      if (myFile.length === 0) {
+        setFile("")
+        setBackImg(true)
+        return false;
+      }
+      if (!myFile[0].type.match('image.*')) {
+        alert(`File ${file.type} is not an image.`)
+        setFile("")
+        return false
+      }
+      if (myFile[0].size > 2090000) {
+        setMessage("Image size cannot be larger than 2MB!")
+        setFile("")
+        return false
+      }
+      setFile(e.target.files[0])
+      
+      const formData = new FormData();
+      formData.append('image', file);
+      setLocalFile(URL.createObjectURL(e.target.files[0]))
+    } catch (err) {
+      console.log(err)
+    }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
   }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setValidateData(true)
+  }
   const handelInputClick = async e => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('image', file)
 
     try {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('image', file)
+      addImgData.current.click()
+      if (!validateData) {
+        setErrorDataMsg("Add Image Catogery")
+        return false
+      };
+      e.target.disabled = true
       const baseURL = process.env.REACT_APP_SERVER_URL
       const user = JSON.parse(localStorage.getItem('user'));
       const res = await axios.post(`${baseURL}uploadimages`, formData, {
@@ -73,10 +158,15 @@ const ImageData = () => {
       setTimeout(() => {
         setUploadPercentage(0)
         setBackImg(!backImg)
-      }, 1000);
-      const { fileName, filePath } = res.data;
-      setUploadedFile({ fileName, filePath });
+      }, 3000);
+      const { fileName } = res.data;
+      setFilename(fileName);
       setMessage('File Uploaded');
+      // Add img Data
+      values.imgUrl = fileName
+      formImgDataSubmit("imgdata", values)
+      setValues(initialState)
+
     } catch (err) {
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
@@ -84,11 +174,31 @@ const ImageData = () => {
         setMessage(err.response.data.msg);
       }
       setUploadPercentage(0)
-      
     }
+    
   };
+  const editItemById = (id) => {
+    if (id) {
+      dispatch(getCustmImgCatData(id))
+    } else {
+      dispatch(clearImgCatData())
+  }
+}
+  const handelEdit = (item) => {
+    const { id, title, catDesc, imageSectionId } = item
+    setEditItem(!editItem)
+    editItemById(id)
+    setCurrentId(id)
+    setDisable(false)
+    setCurrentItem({
+        id,
+        title,
+        catDesc,
+        imageSectionId,
+    })
+}
   return (
-    <section className='img-data'>
+    <section className='container item-section img-data'>
       { catId ?
         (<div className='img-data-header'>
           <div>
@@ -100,67 +210,56 @@ const ImageData = () => {
             <label className='text' >{ imgCatogery.title } </label>
           </div>
           <div>
-            <h6>الوصف</h6>
+            <h6>العنوان</h6>
             <label className='text' >{ imgCatogery.catDesc } </label>
           </div>
-
-
         </div>
         ) : (
           <>
-            No
+            <AddImgData
+              imgSection={ imgSection }
+              imgCatogery={ imgCatogery }
+              handleSubmit={ handleSubmit }
+              inputs={ inputs }
+              values={ values }
+              onChangeInput={ onChangeInput }
+              addItem={ addItem }
+              setAddItem={ setAddItem }
+              errorMessage={ errorMessage }
+              addImgData={ addImgData }
+              setValidateData={ setValidateData }
+              validateData={ validateData }
+              filename={filename}
+              onChangeSlecet={ onChangeSlecet }
+              errorDataMsg={ errorDataMsg }
+            />
           </>
         ) }
-      <h5 className='text-center mt-3'>إضافة صورة</h5>
-      <form onSubmit={onSubmit}>
-        <div className='custom-file mb-4'>
-          <div className={ localFile.length ===0 ? 'img-con' : 'img-con local'}>
-            <img src={
-              localFile.length === 0 ? '/assets/images/cam.png':
-              backImg ? '/assets/images/cam.png' : localFile
-            }
-              alt='img'
-              onClick={ () => {
-                uploadPercentage === 0 && inputRef.current.click()
-                setBackImg(false)
-              } }
-            />
-             <input
-            type='file'
-            className='custom-file-input input-file'
-            id='customFile'
-            onChange={ onChange }
-             ref={ inputRef }
-          />
-          </div>
-         
-         
-        </div>
-      </form>
-      <div className='btn-con'>
-            <button
-          className='btn btn-success mt-4 mr-4'
-          onClick={ handelInputClick }
-          disabled={ localFile.length !== 0 && !backImg  ? false : true}
-        >
-          حفظ
-        </button>
-        <button className='btn btn-info mt-4 mr-4'
-          onClick={ () => inputRef.current.click() }
-          ref={ submitRef }
-          disabled={ uploadPercentage === 0 ? false : true}
-        >
-          اختر 
-        </button>
-        <Progress percentage={ uploadPercentage } />
-        
-        { message &&
-          <Message msg={ message } delay={ 1000 } />
-        }
-      </div>
+      <ImgUploader
+        onSubmit={ onSubmit }
+        onChangeFile={ onChangeFile }
+        handelInputClick={ handelInputClick }
+        localFile={ localFile }
+        backImg={ backImg }
+        setBackImg={ setBackImg }
+        uploadPercentage={ uploadPercentage }
+        inputRef={ inputRef }
+        submitRef={ submitRef }
+        message={ message }
+      />
+      { errorMessage.message }
       
+      <ListImgData
+        tablename={ tablename }
+        handelEdit={ handelEdit }
+        imgData={ imgData }
+        sortItems={ sortItems } />
+      <h3>Edit Image</h3>
+      {editItem.id}
     </section>
 
   )
+
 }
+
 export default ImageData;

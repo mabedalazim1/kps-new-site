@@ -6,7 +6,7 @@
     width: 100%;
 }
 .footer-cover .overlay{
-    background-color: rgba(0, 0, 0, .70);
+    background-color: var(--main-overlay);
     width: 100%;
     position: absolute;
     left: 0;
