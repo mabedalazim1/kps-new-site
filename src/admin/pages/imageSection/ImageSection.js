@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { showLoading } from 'react-redux-loading-bar'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import Loading from '../../components/loading/Loading'
 import { formChange, formsubmit } from './../../services/formPost'
 import {
@@ -60,6 +60,7 @@ const ImageSection = () => {
     const [sortIcon, setSortIcon] = useState("sort-item fas fa-sort-alpha-down-alt")
     const [sortItems, setSortItems] = useState(false)
     const [disable, setDisable] = useState(false)
+    const [nodata, setNoData] = useState(false)
 
     const btnUpdate = useRef(null)
     const items = useSelector(state => state.imgSections)
@@ -67,9 +68,17 @@ const ImageSection = () => {
     const dataMessage = useSelector(state => state.dataMessage)
     const dispatch = useDispatch()
 
+    const testTable =()=>{
+        setInterval(() => {
+            setNoData(true)
+            setLoadItem(false)
+            dispatch(hideLoading())
+        }, 5000)
+    }
     const fetchData = () => {
         dispatch(showLoading())
         dispatch(retrieveImgSections())
+        testTable()
     }
     useEffect(() => {
         fetchData()
@@ -134,13 +143,29 @@ const ImageSection = () => {
         setCurrentId(0)
     }
 
+    
     return (
         <div className='container item-section'>
             { errorMessage.message }
             { currentId !== 0 ? <h4>تعديل  { tablename.tableHeadTitleA} </h4> :
                 addItem && !editItem ? <h4>إضافة { tablename.subTitle }</h4> : <h4> { tablename.mainTitle }</h4> }
             { items.length === 0 ? (
-                <Loading error={ errorMessage.message } />
+                <>
+                    <Loading error={ errorMessage.message } nodata={ nodata } />
+                  
+                    { !errorMessage.message && nodata &&
+                        <AddImgSection
+                            handleSubmit={ handleSubmit }
+                            onChange={ onChange }
+                            inputs={ inputs }
+                            values={ values }
+                            addItem={ addItem }
+                            setAddItem={ setAddItem }
+                            errorMessage={ errorMessage }
+                            />}
+                     
+                </>
+                
             ) : (
                 <>
                     { !addItem && !editItem && <button
@@ -159,8 +184,8 @@ const ImageSection = () => {
                             addItem={ addItem }
                             setAddItem={ setAddItem }
                             errorMessage={ errorMessage }
-                        />
-                    ) : !editItem && items.length > 1 ? (
+                            />
+                    ) : !editItem && items.length > 0 ? (
                         <>
                             { loadItem ? <p className='loding-item'> Loading ... </p>
                                 : <p className='loding-item'></p> }

@@ -25,6 +25,7 @@ import './App.css';
 import Roiaa from './pages/roiaa/Roiaa';
 import Index from './pages/home/index/Index';
 import Login from './components/login/login.component';
+import AddImgData from './admin/pages/imageData/AddImgData';
 
 function App() {
 
@@ -60,8 +61,8 @@ function App() {
             <Route path='imageContant' element={ <ImageContant /> } />
             <Route path='sections' element={ <ImageSection /> } />
             <Route path='categories' element={ <ImageCategory /> } />
-            <Route path='addimage' element={ <ImageData /> } />
-            <Route path='editimage/:id' element={ <EditImage /> } />
+            <Route path='addimage' element={ <EditImage /> } />
+            <Route path='editimage/:id' element={ <AddImgData /> } />
             
             <Route path='forms' element={ <Forms /> } />
             

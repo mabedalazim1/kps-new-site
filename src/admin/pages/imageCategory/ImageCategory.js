@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { showLoading } from 'react-redux-loading-bar'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import Loading from '../../components/loading/Loading'
 import { formChange, formsubmit } from '../../services/formPost'
 import {
@@ -69,6 +69,7 @@ const ImageCategory = () => {
     const [sortIcon, setSortIcon] = useState("sort-item fas fa-sort-alpha-down-alt")
     const [sortItems, setSortItems] = useState(false)
     const [disable, setDisable] = useState(false)
+    const [nodata, setNoData] = useState(false)
 
     const btnUpdate = useRef(null)
     const catItems = useSelector(state => state.imgCatogery)
@@ -78,16 +79,25 @@ const ImageCategory = () => {
     const catogeryData = useSelector(state => state.imgCatogryData)
     const dispatch = useDispatch()
 
+    const testTable =()=>{
+        setInterval(() => {
+            setNoData(true)
+            setLoadItem(false)
+            dispatch(hideLoading())
+        }, 5000)
+    }
+
     const fetchData = () => {
         dispatch(showLoading())
         dispatch(retrieveImgSections())
         dispatch(retrieveImgCatogeries())
         dispatch(getImgSectionCatgorey())
+        testTable()
     }
     useEffect(() => {
         fetchData()
         return
-    }, [loadItem])
+    }, [])
 
     useEffect(() => {
         const timer = setTimeout(() =>
@@ -158,7 +168,20 @@ const ImageCategory = () => {
             { currentId !== 0 ? <h4>تعديل { tablename.tableHeadTitleA }</h4> :
                 addItem && !editItem ? <h4>إضافة { tablename.subTitle }</h4> : <h4> { tablename.mainTitle }</h4> }
             { catItems.length === 0 ? (
-                <Loading error={ errorMessage.message } />
+                <>
+                <Loading error={ errorMessage.message } nodata={ nodata } />
+                { !errorMessage.message && nodata &&
+                <AddImgCatgery
+                    handleSubmit={ handleSubmit }
+                    onChange={ onChange }
+                    inputs={ inputs }
+                    values={ values }
+                    addItem={ addItem }
+                    setAddItem={ setAddItem }
+                    errorMessage={ errorMessage }
+                />
+                    }
+                    </>
             ) : (
                 <>
                     { !addItem && !editItem && <button
@@ -178,7 +201,7 @@ const ImageCategory = () => {
                             setAddItem={ setAddItem }
                             errorMessage={ errorMessage }
                         />
-                    ) : !editItem && catItems.length > 1 ? (
+                    ) : !editItem && catItems.length > 0 ? (
                         <>
                             { loadItem ? <p className='loding-item'> Loading ... </p>
                                 : <p className='loding-item'></p> }
@@ -256,7 +279,7 @@ const ImageCategory = () => {
                                     <div key={ index }>
                                         <p>{ catogery.imgDesc }</p>
                                         <p>{ catogery.imgUrl }</p>
-                                        <img src={ catogery.imgUrl } alt="img" />
+                                        <img src={  `http://www.alkwtherps.com/api/static/uploads/images/${catogery.imgUrl}`} alt="img" />
                                     </div>
 
                                 )) }

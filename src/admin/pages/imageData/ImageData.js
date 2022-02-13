@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { retrieveImgCatogeryById, retrieveImgCatogeries } from './../../actions/imageCategory'
 import { retrieveImgSectionById, retrieveImgSections } from './../../actions/imgSection'
-import { getImgCatogeryData, getCustmImgCatData, clearImgCatData } from '../../actions/imgDataByCat'
+import { getCustmImgCatData, clearImgCatData } from '../../actions/imgDataByCat'
+import {  deleteImgData} from '../../actions/imageData'
 import { useState, useEffect, useRef } from 'react';
 import { formChange, formImgDataSubmit } from '../../services/formPost'
 import axios from 'axios';
@@ -17,7 +18,8 @@ const ImageData = () => {
     mainTitle: "معرض الصور",
     subTitle: "صورة",
     tableHeadTitleA: "الصورة",
-    tableHeadTitleB: "تعديل / حذف",
+    tableHeadTitleB: "الوصف",
+    tableHeadTitleC: "تعديل / حذف",
 }
   // Form data
   const initialState = {
@@ -62,7 +64,6 @@ const ImageData = () => {
   const imgSection = useSelector(state => state.imgSections)
   const imgData = useSelector(state => state.imgCatogryData)
   const errorMessage = useSelector(state => state.message)
-  const catSection = useSelector(state => state.imgCatBySection)
   const sectionId = localStorage.getItem("secId")
 
   const fetchData = () => {
@@ -78,7 +79,7 @@ const ImageData = () => {
     fetchData()
     return {
     }
-  }, [catId])
+  }, [])
 
   const onChangeInput = (e) => {
     formChange(setValues, values, e)
@@ -184,18 +185,8 @@ const ImageData = () => {
       dispatch(clearImgCatData())
   }
 }
-  const handelEdit = (item) => {
-    const { id, title, catDesc, imageSectionId } = item
-    setEditItem(!editItem)
-    editItemById(id)
-    setCurrentId(id)
-    setDisable(false)
-    setCurrentItem({
-        id,
-        title,
-        catDesc,
-        imageSectionId,
-    })
+  const handelDelete = (id) => {
+    dispatch(deleteImgData(id))
 }
   return (
     <section className='container item-section img-data'>
@@ -215,7 +206,6 @@ const ImageData = () => {
           </div>
         </div>
         ) : (
-          <>
             <AddImgData
               imgSection={ imgSection }
               imgCatogery={ imgCatogery }
@@ -233,7 +223,6 @@ const ImageData = () => {
               onChangeSlecet={ onChangeSlecet }
               errorDataMsg={ errorDataMsg }
             />
-          </>
         ) }
       <ImgUploader
         onSubmit={ onSubmit }
@@ -247,15 +236,20 @@ const ImageData = () => {
         submitRef={ submitRef }
         message={ message }
       />
-      { errorMessage.message }
+     
       
-      <ListImgData
+      { imgData &&
+        <>
+        <ListImgData
         tablename={ tablename }
-        handelEdit={ handelEdit }
+        handelDelete={ handelDelete }
         imgData={ imgData }
         sortItems={ sortItems } />
       <h3>Edit Image</h3>
       {editItem.id}
+      
+        </>
+     }
     </section>
 
   )

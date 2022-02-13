@@ -1,0 +1,66 @@
+.edit-img-data{
+    margin-bottom: 50px;
+}
+.edit-img-data select{
+    font-size: 18px;
+    min-width: 300px;
+}
+.edit-img-data .img-data-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.img-gallery{
+    text-align: center;
+}
+.edit-img-data .gallery-title{
+    font-size: 20px;
+}
+.edit-img-data .form-con{
+    justify-content: flex-end;
+}
+.edit-img-data .form-con input{
+    max-width: 300px;
+}
+.edit-img-data table{
+    direction: rtl;
+}
+.edit-img-data table img{
+    height: 80px;
+    border-radius: 5px;
+}
+.edit-img-data .btn-con{
+    text-align: right;
+    margin: 20px 10px;
+}
+.edit-img-data .gallery-sub-title{
+    color: red;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.edit-img-data i{
+    font-size: 24px;
+    color: var(--main-color-d);
+}
+
+.add-img-con .add-img-con-title{
+    text-align: center;
+}
+.add-img-con .add-img-con-title {
+    text-align: center;
+    margin-top: 50px;
+}
+.add-img-con .form-title{
+    color: var(--main-color-d);
+}
+.add-img-con .form-sub-title{
+   font-size: 16px;
+   margin-top: 40px;
+}
+.add-img-con .btn-back{
+    margin-top: -100px;
+}
+
+.add-img-con .formInput label{
+    margin-bottom: 10px;
+}

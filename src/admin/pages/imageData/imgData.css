@@ -3,9 +3,11 @@
 }
 .img-data .img-data-header{
     display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
+    flex-direction: row;
+    align-items: center;
 }
+
+
 .img-data .form-con{
     justify-content: flex-end;
 }
@@ -24,7 +26,6 @@
 }
 .img-data h6{
     display: inline-block;
-    padding: 5px;
     font-size: 15px;
 }
 .img-data .img-con{
@@ -81,19 +82,15 @@
     margin: 10px auto;
 }
 .img-data .message-con{
-   transform: translate(0,-350px);
-    width: 300px;
+   transform: translate(0px,-200px);
+    /* width: 300px; */
     margin: auto;
     text-align: center;
 }
 .img-data .message-con .alert{
     border-radius: 10px;
 }
-.img-data .img-upload{
-    display: inline-block;
-    margin-top: -50px;
-    transform: translate(-280%,-200px);
-}
+
 .img-data .img-upload h5{
    font-size: 13px;
    font-weight: bold;

@@ -1,88 +1,156 @@
-
-import { useSelector, useDispatch } from 'react-redux'
-import { useState, useEffect } from 'react';
-import { formChange, formsubmit } from './../../services/formPost'
-import FormInput from '../../components/formInput/FormInput';
-import { useNavigate, useParams } from "react-router-dom";
-import{ retrieveImgDataById} from './../../actions/imageData'
-
+import './editImg.css'
+import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router'
+import { retrieveImgCatogeries } from '../../actions/imageCategory'
+import { getCustmImgCatData, clearImgCatData } from '../../actions/imgDataByCat'
 
 const EditImage = () => {
 
-
-  const initialState = {
-    imgDesc: "",
-    imgUrl: "",
-  }
-  
-
+    let navigate = useNavigate()
+    const imgCatogery = useSelector(state => state.imgCatogery)
+    const imgCatData = useSelector(state => state.imgCatogryData)
+    const [currentCatId, setCurrentCatId] = useState(null)
+    const [imageCatogeryId, setImageCatogeryId]=useState("")
+    const [selectError, setSelectError] = useState("")
+    const selectRef = useRef(null)
     const dispatch = useDispatch()
-    const navigate = useNavigate();
-    const errorMessage = useSelector(state => state.message)
-    const imgData = useSelector(state => state.imgData)
-    const [values, setValues] = useState(initialState)
-  const inputs = [
-    {
-      id: 1,
-      name: "imgDesc",
-      label: "وصف الصورة",
-      errorMessage: "Object is required",
-      placeholder: "اضف وصف للصورة",
-      type: "text",
-    },
-    ]
 
-    const { id } = useParams()
     const fetchData = () => {
-        dispatch(retrieveImgDataById(id))
-        setValues({
-            imgDesc: imgData.imgDesc,
-            imgUrl : imgData.imgUrl
-        })
+        dispatch(retrieveImgCatogeries()) 
+        localStorage.removeItem("imageCatogeryId")
     }
-   
     
     useEffect(() => {
         fetchData()
-    },[])
-    const handleSubmit = (e) => {
-        e.preventdefault()
-        formsubmit("imgdata", e)
+    }, [])
+    
+    useEffect(() => {
+        if (id) {
+            dispatch(getCustmImgCatData(id))
+        }
+    },[imgCatData])
+    const handleSelect = (e) => {
+        const id = e.target.value
+        if (id) {
+            dispatch(getCustmImgCatData(id))
+            setCurrentCatId(id)
+            setSelectError("")
+            setImageCatogeryId(id)
+        } else {
+            dispatch(clearImgCatData())
+            setCurrentCatId(null)
+            setImageCatogeryId("")
+        }
     }
-
+    const handleAddClick = () => {
+        if (!currentCatId) {
+            selectRef.current.focus()
+            setSelectError("يرجى اختيار الموضوع")
+        } else {
+            localStorage.setItem("imageCatogeryId", currentCatId)
+            navigate(`/admin/editimage/${currentCatId}`)
+            fetchData()
+        }
+        
+    }
+    const id = localStorage.getItem("imageCatogeryId")
+    const testCatId = () => {
+        
+        //localStorage.removeItem("imageCatogeryId")
+        setImageCatogeryId(id)
+      
+    }
+    useEffect(() => {
+        testCatId()
+    },[])
     return (
-        <div>
-            <div className="form-con">
-                            <form onSubmit={ handleSubmit }>
-                                { inputs.map((input) => (
-                                    <FormInput
-                                        key={ input.id }
-                                        { ...input }
-                                        value={ values[input.name] }
-                                        onChange={ formChange }
-                                    />
-                                ))
-                                }
-                    <div className='button-con'>
-                       
-                         <button
-                                        type="button"
-                            className='btn btn-info'
-                            onClick={() => navigate(-1)}
-                                    >إلغاء</button>
-                                   
-                                    <button
-                                        type="submit"
-                                        className='btn btn-success'
-                                    >إضافة</button>
-                                </div>
-                                <p className='error'>{ errorMessage.message }</p>
-            </form>
-            <p className='error'>{ errorMessage.message }</p>
+        <div className="edit-img-data">
+            <div className="img-data-header">
+                <div className="form-con">
+                    <form >
+                        <label htmlFor="imageCatogeryId">: اختر الموضوع </label>
+                        <select
+                            className="form-select  text-center mr-5"
+                            aria-label="Default select example"
+                            name="imageCatogeryId"
+                            id="imageCatogeryId"
+                            required="inpu is required"
+                            onChange={ handleSelect }
+                            ref={ selectRef }
+                           // value= { localStorage.getItem("imageCatogeryId")  }
+                        >
+                            <option></option>
+                            { imgCatogery!==null && imgCatogery.length > 0 && imgCatogery.map((option) => (
+                                <option
+                                    value={ option.id }
+                                    key={ option.id }>
+                                    { option.title }
+                                </option>
+                            )) }
+                        </select>
+                        <p className='error text-center'>{ selectError }</p>
+                    </form>
+
+                </div>
+
+            </div>
+            <div className='img-gallery'>
+                <p className='gallery-title'>معرض الصور</p>
+                { imgCatData.length === 0 ?
+                    <>
+                       { currentCatId &&  <h5 className="gallery-sub-title">لا يوجد صور لهذا الموضوع</h5>}
+                       { !currentCatId &&  <h5 className="gallery-sub-title">يرجى اختيار الموضوع</h5>}
+                        <div className='btn-con'>
+                        <button
+                                className='btn btn-success btn-add'
+                            onClick={ handleAddClick }>إضافة </button>
                         </div>
-            
+                    </>
+                     :
+                    <>
+                        <p>عدد الصور : { imgCatData.length }</p>
+                        <div className='btn-con'>
+                        <button
+                                className='btn btn-success btn-add'
+                            onClick={handleAddClick}>إضافة </button>
+                        </div>
+                        { currentCatId &&  <h5 className="gallery-sub-title">{}</h5>}
+
+                        <table className='table table-bordered table-hover '>
+                            <thead>
+                                <tr>
+                                    <th scope='col' className='text-center'>م</th>
+                                    <th scope='col' className='text-center'> الوصف</th>
+                                    <th scope='col' className='text-center'>الصورة</th>
+                                    <th scope='col' className='text-center'>تعديل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                { imgCatData.slice(0).reverse().map((item, index) => (
+                                    <tr className='text-center' key={ index }>
+                                        <th className='align-middle' scope='row'>{ index + 1 }</th>
+                                        <td className='align-middle'>{ item.imgDesc }</td>
+                                        <td>
+                                            <img src={ `http://www.alkwtherps.com/api/static/uploads/images/${item.imgUrl}` } alt="" />
+                                        </td>
+                                        <td className='text-center align-middle'>
+                                            <Link to={ `/admin/editimage/${item.id}` }>
+                                                <i className="fas fa-info-circle"
+                                                    title='تعديل '
+                                                >
+                                                </i>
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                )) }
+                            </tbody>
+                        </table>
+                    </>
+                }
+            </div>
         </div>
     );
 }
-
 export default EditImage;

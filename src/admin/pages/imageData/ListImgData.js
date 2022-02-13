@@ -1,5 +1,5 @@
 import {Link } from "react-router-dom"
-const ListImgData = ({ imgData, sortItems, tablename, handelEdit }) => {
+const ListImgData = ({ imgData, sortItems, tablename, handelDelete }) => {
 
 
     return (
@@ -9,17 +9,18 @@ const ListImgData = ({ imgData, sortItems, tablename, handelEdit }) => {
             <thead>
                 <tr>
                     <th scope='col' className='text-center'>م</th>
-                    <th scope='col' className='text-center'>{ tablename.tableHeadTitleA }</th>
                     <th scope='col' className='text-center'>{ tablename.tableHeadTitleB }</th>
+                    <th scope='col' className='text-center'>{ tablename.tableHeadTitleA }</th>
+                    <th scope='col' className='text-center'>{ tablename.tableHeadTitleC }</th>
                 </tr>
             </thead>
             <tbody>
                 { sortItems && imgData.map((item, index) => (
-                     Table(index,handelEdit, item)
+                     Table(index,handelDelete, item)
                 )) }
 
                 {!sortItems &&  imgData.slice(0).reverse().map((item, index) => (
-                    Table(index,handelEdit, item)
+                    Table(index,handelDelete, item)
                 )) }
             </tbody>
             </table>
@@ -28,27 +29,28 @@ const ListImgData = ({ imgData, sortItems, tablename, handelEdit }) => {
     );
 }
 
-const Table = (index, handelEdit, item) =>
+const Table = (index, handelDelete, item) =>
   
     <tr className='text-center' key={ index }>
         <th scope='row'>{ index + 1 }</th>
-        <td onClick={ () => handelEdit(item) }
+         <td>{ item.imgDesc }</td>
+        <td 
             className='td-title'>
             <img src ={`http://www.alkwtherps.com/api/static/uploads/images/${item.imgUrl}`} alt=""/>      
         </td>
         <td className='text-center'>
-            <i className='fas fa-info-circle'
+            <i className='fas fa-trash-alt'
                 title='تعديل / حذف'
-                onClick={ () => handelEdit(item) }>
+                onClick={ () => handelDelete(item.id) }>
             </i>
            
-                <Link to={`/admin/editimage/${item.id}`}>
-                <i className='fas fa-info-circle'
+            <Link to={ `/admin/editimage/${item.id}` }>
+            <i className="fas fa-info-circle"
                 title='تعديل '
                 >
                     </i>
                 </Link>
-            
+               
             
         </td>
     </tr>

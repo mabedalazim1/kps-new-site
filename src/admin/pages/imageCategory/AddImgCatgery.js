@@ -18,6 +18,7 @@ const AddImgCatgery = ({ handleSubmit, inputs, values, onChange, addItem, setAdd
     }, [])
     
     return (
+
         <div className="form-con">
             <form onSubmit={ handleSubmit }>
                 <div>
@@ -30,7 +31,7 @@ const AddImgCatgery = ({ handleSubmit, inputs, values, onChange, addItem, setAdd
                     required="inpu is required"
                 >
                     <option></option>
-                    { sectionData.map((option) => (
+                    {sectionData!==null && sectionData.length>0 && sectionData.map((option) => (
                         <option
                             value={ option.id }
                             key={ option.id }>

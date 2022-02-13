@@ -1,42 +1,66 @@
-import FormInput from "../../components/formInput/FormInput";
+import { useParams, useNavigate } from "react-router-dom"
+import { useState, useEffect, useRef } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { retrieveImgCatogeryById } from '../../actions/imageCategory'
+import { formChange } from '../../services/formPost'
+import ImgUploader from "./ImgUploader"
+import FormInput from '../../components/formInput/FormInput'
+import './imgData.css'
 
-const AddImgData = ({
-    handleSubmit,
-    inputs,
-    values,
-    onChangeInput,
-    errorMessage,
-    imgCatogery,
-    addImgData,
-    errorDataMsg,
-    onChangeSlecet,
-}) => {
+const AddImgData = () => {
+      // Form data
+  const initialState = {
+    imgDesc: "",
+    imgUrl: "",
+  }
+    const [values, setValues] = useState(initialState)
     
+    const inputs = [
+        {
+          id: 1,
+          name: "imgDesc",
+          label: "وصف الصورة",
+          errorMessage: "Object is required",
+          placeholder: "اضف وصفاً للصورة",
+          type: "text",
+        },
+    ]
+    const addImgData = useRef(null)
+    const [validateData, setValidateData] = useState(false);
+
+    const { id } = useParams()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const imgCatogery = useSelector(state => state.imgCatogery)
+    const errorMessage = useSelector(state => state.message)
+
+    const fetchData = () => {
+        if (id) {
+            dispatch(retrieveImgCatogeryById(id))
+            localStorage.setItem("imageCatogeryId",id ) 
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [id])
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setValidateData(true)
+        
+    }
+    const onChangeInput = (e) => {
+        formChange(setValues, values, e)
+    }
     return (
-        <div className="form-con">
-            <form onSubmit={ handleSubmit }>
-                <div>
-                    <label htmlFor="imageCatogeryId">: الموضوع </label>
-                    <select
-                    className="form-select  text-center mr-5"
-                    aria-label="Default select example"
-                    name="imageCatogeryId"
-                    id="imageCatogeryId"
-                        required="inpu is required"
-                        onChange={onChangeSlecet}
-                >
-                    <option></option>
-                    { imgCatogery.map((option) => (
-                        <option
-                            value={ option.id }
-                            key={ option.id }>
-                            
-                            { option.title }
-                        </option>
-                    )) }
-                    </select>
-                    <p className="error">{errorDataMsg}</p> 
-                </div>
+        <div className="add-img-con">
+           <div className="add-img-con-title">
+            <h5 className="form-title"> {imgCatogery.title} </h5>
+                <h5 className="form-sub-title">إضافة صورة</h5>
+            </div>
+            <div className="form-con">
+                <form onSubmit={handleSubmit }>
                 { inputs.map((input) => (
                     <FormInput
                         key={ input.id }
@@ -55,10 +79,24 @@ const AddImgData = ({
                         إضافة</button>
                 </div>
                 <p className='error'>{ errorMessage.message }</p>
-            </form>
-            <p className='error'>{ errorMessage.message }</p>
+
+                </form>
+               
+            
+            </div>
+            <ImgUploader
+                addImgData={ addImgData }
+                validateData={ validateData }
+                imageCatogeryId={ id }
+                values={ values }
+                setValues={ setValues }
+            />
+            <button
+                className="btn btn-primary btn-back"
+                onClick={()=>navigate(-1)}>رجوع</button>
         </div>
-    );
+        
+    )
 }
 
 export default AddImgData;

@@ -1,10 +1,10 @@
 import LoadingBar from 'react-redux-loading-bar'
 import './loading.css'
-const Loading = ({ error }) => {
+const Loading = ({ error, nodata=false }) => {
     return (
         <div className='loading'>
         <br /> <br />
-        <p>Loading ....</p>
+        { !nodata && <p>Loading ....</p>}
         <LoadingBar style={ { backgroundColor: 'green' } } />
         <p className='error'>{ error }</p>
     </div>
