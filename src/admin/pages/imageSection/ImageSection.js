@@ -82,7 +82,6 @@ const ImageSection = () => {
     }
     useEffect(() => {
         fetchData()
-        return
     }, [])
 
     useEffect(() => {

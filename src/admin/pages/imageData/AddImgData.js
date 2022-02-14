@@ -22,11 +22,11 @@ const AddImgData = () => {
           label: "وصف الصورة",
           errorMessage: "Object is required",
           placeholder: "اضف وصفاً للصورة",
-          type: "text",
+            type: "text",
+            required: false,
         },
     ]
     const addImgData = useRef(null)
-    const [validateData, setValidateData] = useState(false);
 
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -47,8 +47,6 @@ const AddImgData = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        setValidateData(true)
-        
     }
     const onChangeInput = (e) => {
         formChange(setValues, values, e)
@@ -65,7 +63,7 @@ const AddImgData = () => {
                     <FormInput
                         key={ input.id }
                         { ...input }
-                        value={ values[input.name] }
+                        value={ values[input.name]|| "" }
                         onChange={ onChangeInput }
                     />
                 ))
@@ -86,7 +84,6 @@ const AddImgData = () => {
             </div>
             <ImgUploader
                 addImgData={ addImgData }
-                validateData={ validateData }
                 imageCatogeryId={ id }
                 values={ values }
                 setValues={ setValues }

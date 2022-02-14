@@ -64,3 +64,10 @@
 .add-img-con .formInput label{
     margin-bottom: 10px;
 }
+.edit-img-data .icon{
+    margin: 0 10px;
+    cursor: pointer;
+}
+.edit-img-data .icon.del{
+  color: red;
+}

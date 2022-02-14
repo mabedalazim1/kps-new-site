@@ -5,12 +5,14 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router'
 import { retrieveImgCatogeries } from '../../actions/imageCategory'
 import { getCustmImgCatData, clearImgCatData } from '../../actions/imgDataByCat'
-
+import { deleteImgData } from '../../actions/imageData'
+import ImgService from './../../adminServices/imgdata.service'
 const EditImage = () => {
 
     let navigate = useNavigate()
     const imgCatogery = useSelector(state => state.imgCatogery)
     const imgCatData = useSelector(state => state.imgCatogryData)
+    const errorMessage = useSelector(state => state.message)
     const [currentCatId, setCurrentCatId] = useState(null)
     const [imageCatogeryId, setImageCatogeryId]=useState("")
     const [selectError, setSelectError] = useState("")
@@ -64,7 +66,18 @@ const EditImage = () => {
     }
     useEffect(() => {
         testCatId()
-    },[])
+    }, [])
+    
+    const handleDeleteImg = (item) => {
+        const { id, imgUrl: name} = item
+        try {
+            dispatch(deleteImgData(id))
+            ImgService.deleteImg(name)
+
+        } catch (err) {
+            console.log(err)
+       }
+    }
     return (
         <div className="edit-img-data">
             <div className="img-data-header">
@@ -97,16 +110,25 @@ const EditImage = () => {
 
             </div>
             <div className='img-gallery'>
-                <p className='gallery-title'>معرض الصور</p>
+                { errorMessage.message ? 
+                    <p className='error'>{ errorMessage.message }</p> 
+                :
+                    <p className='gallery-title'>معرض الصور</p>
+                }
+                
+               
                 { imgCatData.length === 0 ?
                     <>
                        { currentCatId &&  <h5 className="gallery-sub-title">لا يوجد صور لهذا الموضوع</h5>}
-                       { !currentCatId &&  <h5 className="gallery-sub-title">يرجى اختيار الموضوع</h5>}
-                        <div className='btn-con'>
+                       { !errorMessage.message &&  !currentCatId && 
+                        <h5 className="gallery-sub-title">يرجى اختيار الموضوع</h5>}
+                        { !errorMessage.message &&
+                            <div className='btn-con'>
                         <button
                                 className='btn btn-success btn-add'
                             onClick={ handleAddClick }>إضافة </button>
-                        </div>
+                            </div>
+                        }
                     </>
                      :
                     <>
@@ -137,11 +159,15 @@ const EditImage = () => {
                                         </td>
                                         <td className='text-center align-middle'>
                                             <Link to={ `/admin/editimage/${item.id}` }>
-                                                <i className="fas fa-info-circle"
+                                                <i className="fas fa-info-circle icon"
                                                     title='تعديل '
                                                 >
                                                 </i>
                                             </Link>
+                                            <i className="far fa-trash-alt del icon"
+                                                title='حذف '
+                                                onClick={()=> handleDeleteImg(item) }
+                                                ></i>
                                         </td>
                                     </tr>
                                 )) }

@@ -1,13 +1,14 @@
 import './about.css'
-import CoveSubPages from '../../components/coverSubPages/CoveSubPages';
+import CoverSubPages from '../../components/coverSubPages/CoverSubPages';
 const About = () => {
     const title = "مدرستنا"
+
     const background = {
         background: "url(/assets/images/IMG-Back-22.jpg)"
     }
     return (
         <main className='about-page' >
-            <CoveSubPages
+            <CoverSubPages
                 title={ title }
                 background={ background }
             />

@@ -96,7 +96,6 @@ const ImageCategory = () => {
     }
     useEffect(() => {
         fetchData()
-        return
     }, [])
 
     useEffect(() => {

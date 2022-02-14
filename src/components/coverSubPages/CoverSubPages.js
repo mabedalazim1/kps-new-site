@@ -1,6 +1,6 @@
-import './coveSubPages.css'
+import './coverSubPages.css'
 
-const CoveSubPages = ({ background, title }) => {
+const CoverSubPages = ({ background, title }) => {
     return (
         <section className='cover-sub-pages'>
             <div className="sub-page-cover" style={ background }>
@@ -12,4 +12,4 @@ const CoveSubPages = ({ background, title }) => {
     )
 }
 
-export default CoveSubPages
+export default CoverSubPages

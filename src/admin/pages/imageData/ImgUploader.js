@@ -2,13 +2,10 @@ import Progress from "../../components/progress/Progress"
 import Message from "../../components/message/Message"
 import { useState, useRef, useEffect } from "react"
 import axios from 'axios'
-import { formChange, formImgDataSubmit } from '../../services/formPost'
+import {  formImgDataSubmit } from '../../services/formPost'
 import './imgData.css'
 
-const ImgUploader = ( { addImgData, validateData,imageCatogeryId, values, setValues }) => {
- 
-  
-  
+const ImgUploader = ( { addImgData, imageCatogeryId, values, setValues }) => {
 
   const messageSizeError = "Image size cannot be larger than 2MB!"
   const imgBackPhath= '/assets/images/cam.png'
@@ -17,9 +14,7 @@ const ImgUploader = ( { addImgData, validateData,imageCatogeryId, values, setVal
   const [message, setMessage] = useState('');
   const [file, setFile] = useState('');
   const [localFile, setLocalFile] = useState([])
-  const [errorDataMsg, setErrorDataMsg] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
-  const [filename, setFilename] = useState('');
   const [backImg, setBackImg] = useState(false)
   const inputRef = useRef(null)
   const submitRef = useRef(null)
@@ -75,15 +70,11 @@ const ImgUploader = ( { addImgData, validateData,imageCatogeryId, values, setVal
   const handelInputClick = async e => {
 
     try {
-      e.preventDefault();
       const formData = new FormData();
       formData.append('image', file)
       addImgData.current.click()
-      if (!validateData) {
-        setErrorDataMsg("Add Image Catogery")
-        return false
-      };
-      e.target.disabled = true
+     
+      submitRef.current.disabled = true
       const baseURL = process.env.REACT_APP_SERVER_URL
       const user = JSON.parse(localStorage.getItem('user'));
       const res = await axios.post(`${baseURL}uploadimages`, formData, {
@@ -106,7 +97,6 @@ const ImgUploader = ( { addImgData, validateData,imageCatogeryId, values, setVal
         setBackImg(!backImg)
       }, 3000);
       const { fileName } = res.data;
-      setFilename(fileName);
       setMessage('File Uploaded');
       // Add img Data
       values.imgUrl = fileName
@@ -115,6 +105,7 @@ const ImgUploader = ( { addImgData, validateData,imageCatogeryId, values, setVal
       setValues([])
       localStorage.setItem("catId", imageCatogeryId)
     } catch (err) {
+      console.log(err)
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
       } else {
@@ -150,7 +141,6 @@ const ImgUploader = ( { addImgData, validateData,imageCatogeryId, values, setVal
               } }
               className={ uploadPercentage < 1 ? "" : "img-progress" }
             />
-
             <input
               type='file'
               accept="image/*"
@@ -171,14 +161,14 @@ const ImgUploader = ( { addImgData, validateData,imageCatogeryId, values, setVal
       <div className='btn-con'>
         <button
           className='btn btn-success mt-4 mr-4'
-          onClick={ handelInputClick }
+            onClick={ handelInputClick }
+            ref={ submitRef }
           disabled={ localFile.length !== 0 && !backImg ? false : true }
         >
           حفظ
         </button>
         <button className='btn btn-info mt-4 mr-4'
           onClick={ () => inputRef.current.click() }
-          ref={ submitRef }
           disabled={ uploadPercentage === 0 ? false : true }
         >
           اختر

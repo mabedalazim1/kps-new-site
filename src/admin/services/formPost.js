@@ -25,7 +25,7 @@ export const formsubmit = (modle = "", e) => {
     axios.post(API_URL + modle, addData, option)   
 }
 
-export const   formChange = (setValues, values, e) => {
+export const formChange = (setValues, values, e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
 }
 
