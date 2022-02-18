@@ -29,6 +29,6 @@ export const formChange = (setValues, values, e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
 }
 
-export const formImgDataSubmit = (modle = "imgdata", data) => {
-    axios.post(API_URL + modle, data, option)   
+export const formImgDataSubmit = ( data) => {
+    axios.post(API_URL + "imgdata", data, option)   
 }

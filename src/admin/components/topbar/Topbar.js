@@ -7,7 +7,7 @@ const Topbar = () => {
                 className='admin-img'
                 src='/assets/images/admin/admin-logo.png'
                 alt='img' />
-            <p className='title'>KPS Admin Panel</p>
+            <p className='title'>مدرسة الكوثر الخاصة</p>
         </nav>
     );
 }

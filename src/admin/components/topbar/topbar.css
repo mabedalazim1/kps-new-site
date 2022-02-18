@@ -23,12 +23,13 @@
         width: 40px;
     }
     .admin-nav .title{
-        display: block;
-        width: 50%;
+        margin-top: 15px;
+       display: block;
        flex: 1; 
        text-align: center;
        justify-content: center;
-       padding-left: 70px;
+       padding-left: 50px;
        font-family: var(--font-ar-c);
+       color: var(--main-color-d);
        }
 }

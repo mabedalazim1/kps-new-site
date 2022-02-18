@@ -69,11 +69,12 @@ const ImageSection = () => {
     const dispatch = useDispatch()
 
     const testTable =()=>{
-        setInterval(() => {
+        let timer = setInterval(() => {
             setNoData(true)
             setLoadItem(false)
             dispatch(hideLoading())
         }, 5000)
+        return () => clearInterval(timer)
     }
     const fetchData = () => {
         dispatch(showLoading())

@@ -3,9 +3,15 @@ import Message from "../../components/message/Message"
 import { useState, useRef, useEffect } from "react"
 import axios from 'axios'
 import {  formImgDataSubmit } from '../../services/formPost'
-import './imgData.css'
+import './imageUploader.css'
 
-const ImgUploader = ( { addImgData, imageCatogeryId, values, setValues }) => {
+
+const ImgUploader = ({ addImgData,
+  imageCatogeryId,
+  values,
+  setValues,
+  updateData,
+}) => {
 
   const messageSizeError = "Image size cannot be larger than 2MB!"
   const imgBackPhath= '/assets/images/cam.png'
@@ -30,8 +36,6 @@ const ImgUploader = ( { addImgData, imageCatogeryId, values, setValues }) => {
 
   useEffect(() => {
     changImgBack()
-    return () => {
-    };
   }, [message]);
 
   const onSubmit = (e) => {
@@ -73,7 +77,6 @@ const ImgUploader = ( { addImgData, imageCatogeryId, values, setValues }) => {
       const formData = new FormData();
       formData.append('image', file)
       addImgData.current.click()
-     
       submitRef.current.disabled = true
       const baseURL = process.env.REACT_APP_SERVER_URL
       const user = JSON.parse(localStorage.getItem('user'));
@@ -98,12 +101,11 @@ const ImgUploader = ( { addImgData, imageCatogeryId, values, setValues }) => {
       }, 3000);
       const { fileName } = res.data;
       setMessage('File Uploaded');
-      // Add img Data
-      values.imgUrl = fileName
-      values.imageCatogeryId = imageCatogeryId
-      formImgDataSubmit("imgdata", values)
+      // Add img Data      
+      fetchImgData(fileName)
       setValues([])
       localStorage.setItem("catId", imageCatogeryId)
+    
     } catch (err) {
       console.log(err)
       if (err.response.status === 500) {
@@ -116,10 +118,18 @@ const ImgUploader = ( { addImgData, imageCatogeryId, values, setValues }) => {
     
   };
 
+  const fetchImgData = (fileName) => {
+    
+    formImgDataSubmit({
+      imgDesc: values.imgDesc === undefined ? "": values.imgDesc,
+      imgUrl: fileName,
+      imageCatogeryId: imageCatogeryId ,
+    })
+    updateData()
 
+}
   return (
     <div className="img-data">
-
     
     <div className="img-upload">
       <h5 className='text-center mt-3'>إضافة صورة</h5>

@@ -13,13 +13,11 @@ import About from './pages/about/About';
 import ContactUs from './pages/contactUs/ContactUs';
 import Manasa from './pages/manasa/Manasa';
 import AdminDashboard from './admin/AdminDashboard'
-import ImageContant from './admin/pages/imageContant/ImageContant'
 import ImageSection from './admin/pages/imageSection/ImageSection';
-import Forms from './admin/components/formInput/Forms';
 import AdminHome  from './admin/pages/home/AdminHome';
 import ImageCategory from './admin/pages/imageCategory/ImageCategory';
 import ImageData from './admin/pages/imageData/ImageData';
-import EditImage from './admin/pages/imageData/EditImage';
+import UpdateImageData from './admin/pages/imageData/UpdateImageData';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import Roiaa from './pages/roiaa/Roiaa';
@@ -58,13 +56,12 @@ function App() {
         </Route>
         <Route path='/admin' element={ <AdminDashboard /> } >
             <Route path='home' element={ <AdminHome /> } />
-            <Route path='imageContant' element={ <ImageContant /> } />
             <Route path='sections' element={ <ImageSection /> } />
             <Route path='categories' element={ <ImageCategory /> } />
-            <Route path='addimage' element={ <EditImage /> } />
-            <Route path='editimage/:id' element={ <AddImgData /> } />
-            
-            <Route path='forms' element={ <Forms /> } />
+            <Route path='imagedata' element={ <ImageData /> } >
+            <Route path=':id' element={ <AddImgData /> } />
+            </Route>
+            <Route path='updateimgdata/:id' element={ <UpdateImageData /> } />
             
           </Route>
         <Route path='manasa' element={<Manasa />} />

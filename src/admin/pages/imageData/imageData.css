@@ -1,0 +1,118 @@
+.image-data{
+    margin-bottom: 50px;
+}
+.image-data .section-form-con{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 100px;
+}
+.image-data select{
+    font-size: 18px;
+    min-width: 300px;
+}
+.image-data .img-data-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -30px;
+}
+.image-data .img-gallery{
+    text-align: center;
+}
+.image-data .gallery-cat-data{
+    display: flex;
+    justify-content: space-around;
+}
+.image-data .gallery-title{
+    font-size: 20px;
+}
+.image-data .gallery-cat-title{
+    color: var(--main-color-d);
+    font-weight: bold;
+}
+.image-data .add-img-form{
+    padding: 10px;
+    background-color: #ddd;
+    width: 100%;
+    border-radius: 10px;
+}
+.image-data .form-con{
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row-reverse;
+    background-color: #fff;
+    width: 100%;
+    padding: 30px;
+    margin: 0;
+}
+.image-data .form-con input{
+    max-width: 300px;
+    
+}
+.image-data .form-con .formInput label{
+   margin-bottom: 5px;
+}
+.image-data table{
+    direction: rtl;
+}
+.image-data table img{
+    height: 80px;
+    border-radius: 5px;
+}
+.image-data .btn-con{
+    text-align: right;
+    margin: 20px 10px;
+}
+.image-data .gallery-sub-title{
+    color: red;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.image-data i{
+    font-size: 24px;
+    color: var(--main-color-d);
+}
+.image-data .icon{
+    margin: 0 10px;
+    cursor: pointer;
+}
+.image-data .icon.del{
+  color: red;
+}
+.add-img-con{
+    margin-top: 20px;
+
+}
+
+
+/*Medim */
+@media (max-width: 992px) {
+   
+}
+/*Small */
+@media (max-width: 768px) {
+
+    .image-data .form-con{
+        flex-direction: column;
+        padding: 20px;
+    }
+    .image-data .section-form-con{
+        justify-content: center;
+        margin: 0px 0 -5px 10px;
+    }
+    .image-data .form-con .formInput label{
+        margin-bottom: 10px;
+     }
+     .image-data .form-con .formInput input{
+        margin-bottom: 10px;
+     }
+     .image-data .img-gallery{
+         margin-top:50px;
+     }
+     .add-img-con{
+        padding-bottom: 50px;
+    }
+     
+}

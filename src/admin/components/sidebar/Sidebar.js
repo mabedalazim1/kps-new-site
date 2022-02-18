@@ -14,11 +14,9 @@ const Sidebar = ({ handleClick }) => {
     }
   const listTitel = [
    { title: "احصائيات",link:"home"},
-   {title: "رفع صورة",link:"imageContant"},
     { title: "الأقسام", link: "sections" },
     { title: "الموضوعات", link: "categories" },
-    { title: "إضافة صورة", link: "addimage" },
-    {title: "النماذج",link:"forms"},
+    { title: " الصور", link: "imagedata" },
   ]
   return (
       <aside className='sidebar'>

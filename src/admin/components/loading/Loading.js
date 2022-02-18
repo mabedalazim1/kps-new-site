@@ -5,7 +5,9 @@ const Loading = ({ error, nodata=false }) => {
         <div className='loading'>
         <br /> <br />
         { !nodata && <p>Loading ....</p>}
-        <LoadingBar style={ { backgroundColor: 'green' } } />
+            <LoadingBar style={ { backgroundColor: 'green' } }
+                maxProgress={ 80 }
+            />
         <p className='error'>{ error }</p>
     </div>
     );
