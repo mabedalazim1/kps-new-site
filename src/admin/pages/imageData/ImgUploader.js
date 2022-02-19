@@ -56,8 +56,8 @@ const ImgUploader = ({ addImgData,
         setFile("")
         return false
       }
-      if (myFile[0].size > 2090000) {
-        setMessage("Image size cannot be larger than 2MB!")
+      if (myFile[0].size > 5242000) {
+        setMessage("Image size cannot be larger than 5MB!")
         setFile("")
         return false
       }

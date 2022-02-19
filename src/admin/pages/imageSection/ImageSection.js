@@ -101,6 +101,7 @@ const ImageSection = () => {
             setSortIcon("sort-item fas fa-sort-alpha-down-alt")
         }
         setSortItems(!sortItems)
+        localStorage.setItem("sortItems", sortItems)
     }
   
     const handleSubmit = (e) => {
@@ -200,7 +201,6 @@ const ImageSection = () => {
                                         handelEdit={ handelEdit }
                                         items={ items }
                                         sortItems={ sortItems }
-                                        
                             />
                         </>
                     ) : editItem &&

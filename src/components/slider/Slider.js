@@ -13,7 +13,7 @@ import SwiperCore, {
   EffectFade,Navigation,Pagination
 } from 'swiper';
 
-import {featuredData} from './../../data/data'
+import { featuredData } from './../../data/data'
 // install Swiper modules
 SwiperCore.use([EffectFade, Navigation, Pagination]);
 

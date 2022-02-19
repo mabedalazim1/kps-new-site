@@ -105,8 +105,6 @@ const ImageCategory = () => {
         fetchData()
         return () => clearTimeout(timer);
     }, [loadItem]);
-
-
     const sortItemClick = () => {
         if (sortIcon === "sort-item fas fa-sort-alpha-down-alt") {
             setSortIcon("sort-item fas fa-sort-alpha-up")
@@ -115,8 +113,9 @@ const ImageCategory = () => {
             setSortIcon("sort-item fas fa-sort-alpha-down-alt")
         }
         setSortItems(!sortItems)
+        localStorage.setItem("sortItems", sortItems)
+        
     }
-
     const handleSubmit = (e) => {
         setLoadItem(!loadItem)
         formsubmit("imgcatogery", e)
@@ -124,7 +123,6 @@ const ImageCategory = () => {
         setAddItem(!addItem)
         setLoadItem(!loadItem)
     }
-
     const onChange = (e) => {
         formChange(setValues, values, e)
     }
@@ -216,7 +214,6 @@ const ImageCategory = () => {
                                 handelEdit={ handelEdit }
                                 catSection={ catSection }
                                 sortItems={ sortItems }
-
                             />
                         </>
                     ) : editItem &&

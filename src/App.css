@@ -1,3 +1,38 @@
+@font-face {
+  font-family: "ScheherazadeLocal";
+  src: url(assest/fonts/Scheherazade-Bold.ttf),
+        url(assest/fonts/Scheherazade-Regular.ttf );
+}        
+@font-face {
+  font-family: "ScheherazadeLocal2";
+  src: url(assest/fonts/Scheherazade.woff2)format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}        
+@font-face {
+  font-family: "AlmaraiLocal";
+  src: url(assest/fonts//Almarai-Bold.ttf),
+        url(assest/fonts/Almarai-ExtraBold.ttf),
+        url(assest/fonts/Almarai-Light.ttf),
+        url(assest/fonts/Almarai-Regular.ttf) ;
+}        
+
+@font-face {
+  font-family: "MuktaLocal";
+  src: url(assest/fonts/Mukta-Bold.ttf),
+        url(assest/fonts/Mukta-ExtraBold.ttf ),
+        url(assest/fonts/Mukta-Light.ttf ),
+        url(assest/fonts/Mukta-Medium.ttf ),
+        url(assest/fonts/Mukta-Regular.ttf ),
+        url(assest/fonts/Mukta-SemiBold.ttf );
+}
+@font-face {
+  font-family: 'LateefLocal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assest/fonts/hESw6XVnNCxEvkb8pB2FVo8.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
 :root {
   --main-color: #e18f1a;
   --main-color-b: #1d96a1;
@@ -10,10 +45,10 @@
   --body-color: #f7f7f7;
   --div-color:  #f2f2f2;
 
-  --font-ar-a: Scheherazade ,Arial, Helvetica, sans-serif;
-  --font-ar-b: Mukta,Arial, Helvetica, sans-serif;
-  --font-ar-c: Almarai,Arial, Helvetica, sans-serif;
-  --font-ar-d: 'Lateef', cursive;;
+  --font-ar-a: "ScheherazadeLocal", Arial, Helvetica, sans-serif;
+  --font-ar-b: "MuktaLocal", Arial, Helvetica, sans-serif;
+  --font-ar-c: "AlmaraiLocal", Arial, Helvetica, sans-serif ;
+  --font-ar-d: 'LateefLocal', cursive;;
 
   --baner-back: linear-gradient(90deg, var(--main-color-d),#2facac);
   --main-shadow:  -1px -1px 3px #ddd;

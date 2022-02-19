@@ -2,7 +2,6 @@ import {
     SET_DATA_MESSAGE,
     CLEAR_DATA_MESSAGE,
     GET_IMG_CATOGERY_DATA,
-    EDIT_IMG_CATOGERY_DATA,
     CLEAR_IMG_CATOGERY_DATA,
 } from './types'
 import { SET_MESSAGE, CLEAR_MESSAGE } from '../../actions/types'

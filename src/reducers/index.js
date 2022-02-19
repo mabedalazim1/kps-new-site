@@ -11,6 +11,7 @@ import imgCatogery from './../admin/reducers/imgCatogery'
 import imgData from './../admin/reducers/imgData' 
 import imgCatogryData from './../admin/reducers/imgCatogeryData' 
 import imgCatBySection from './../admin/reducers/imgCatBySection' 
+import imgListData from './../admin/reducers/imgListData' 
 
 export default combineReducers({
   imageUrl,
@@ -24,5 +25,6 @@ export default combineReducers({
   imgCatBySection,
   imgData,
   imgCatogryData,
+  imgListData,
   loadingBar : loadingBarReducer,
   })

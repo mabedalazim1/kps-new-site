@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
 const ImageGallery = ({
@@ -9,6 +9,7 @@ const ImageGallery = ({
     setItemId,
 }) => {
 
+    const navigate = useNavigate()
     const imgCatData = useSelector(state => state.imgCatogryData)
     const setCurentCatId = () => {
         localStorage.setItem("imgCatogeryId", currentCatId)
@@ -20,8 +21,6 @@ const ImageGallery = ({
                 :
                 <p className='gallery-title'>معرض الصور</p>
             }
-
-
             { imgCatData.length === 0 ?
                 <>
                     { currentCatId && <h5 className="gallery-sub-title">لا يوجد صور لهذا الموضوع</h5> }
@@ -49,7 +48,12 @@ const ImageGallery = ({
                             { imgCatData.slice(0).reverse().map((item, index) => (
                                 <tr className='text-center' key={ index }>
                                     <th className='align-middle' scope='row'>{ index + 1 }</th>
-                                    <td className='align-middle'>{ item.imgDesc }</td>
+                                    <td className='align-middle td-title'
+                                        onClick={()=>navigate( `/admin/updateimgdata/${item.id}`)}>
+                                       
+                                            { item.imgDesc }
+                                       
+                                    </td>
                                     <td>
                                         <img src={ `${process.env.REACT_APP_SERVER_URL}/static/uploads/images/${item.imgUrl}` } alt="" />
                                     </td>
@@ -59,11 +63,10 @@ const ImageGallery = ({
                                                 title='تعديل '
                                                 onClick={ () => {
                                                     setCurentCatId()
-                                                }}
+                                                } }
                                             >
                                             </i>
                                         </Link>
-
                                         <i className="far fa-trash-alt del icon"
                                             title='حذف '
                                             onClick={ () => {
@@ -73,7 +76,6 @@ const ImageGallery = ({
                                                 } else {
                                                     setItemDesc(item.imgDesc)
                                                 }
-                                                
                                                 setItemId(item.id)
                                             } }
                                         >

@@ -27,7 +27,7 @@ const ListImgCatgery = ({ catSection, sortItems, tablename, handelEdit }) => {
 }
 
 const Table = (index, handelEdit, item) =>
-  
+
     <tr className='text-center' key={ index }>
         <th scope='row'>{ index + 1 }</th>
         <td onClick={ () => handelEdit(item) }
@@ -41,7 +41,5 @@ const Table = (index, handelEdit, item) =>
             </i>
         </td>
     </tr>
-
-
 
 export default ListImgCatgery;

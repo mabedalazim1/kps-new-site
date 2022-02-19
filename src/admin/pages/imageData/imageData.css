@@ -21,6 +21,9 @@
 .image-data .img-gallery{
     text-align: center;
 }
+.image-data .img-gallery .td-title{
+    cursor: pointer;
+}
 .image-data .gallery-cat-data{
     display: flex;
     justify-content: space-around;
