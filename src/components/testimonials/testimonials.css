@@ -15,7 +15,7 @@
 }
 
 .testimonials .testimonials-img{
-    height: 200px;
+    width:  200px;
     border-right-style: solid;
     border-right-width:5px ;
     border-right-color: var(--main-color-d);
@@ -30,6 +30,19 @@
     font-family: var(--font-ar-c);
     color: #888;
     display: flex;
+}
+.testimonials .testimonials-text {
+  line-height: var(--bs-body-line-height);
+  font-size: var(--bs-body-font-size);
+  text-align: justify;
+}
+.testimonials .testimonials-text .text-icon-right,
+.testimonials .testimonials-text .text-icon-left{
+   text-align: right;
+   color: var(--main-color-d);
+}
+.testimonials .swiper{
+    height: auto !important;
 }
 /*Medim */
 @media (max-width: 992px) {
@@ -53,4 +66,5 @@
         border-radius: 50%;
 
     }
+    
 }

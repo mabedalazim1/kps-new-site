@@ -4,7 +4,6 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 120px;
     box-shadow: var(--main-shadow);
-   
 
 }
 
@@ -38,6 +37,7 @@
 .numbers .contant .row{
     flex-direction: row-reverse;
     align-items: center;
+    margin-top: 100px;
 }
 
 .numbers .contant .col-numbers{
@@ -56,15 +56,15 @@
     position: relative;
 }
 .numbers .icon-con i{
-    font-size: 50px;
+    font-size: 35px;
     color: var(--main-color);
 
 }
 
 .numbers .icon-con .text-no{
 position: absolute;
-top: 15px;
-left: 60px;
+top: 8px;
+left: 45px;
 font-size: 20px;
 }
 .numbers .text-title{
@@ -81,6 +81,17 @@ font-size: 20px;
     }
     .important-numbers,
     .important-numbers .overlay{
-       height: 600px;
-   }   
+        height: 600px;
+}
+.numbers .contant .row{
+    margin-top: 0;
+}
+.numbers .contant .col-numbers{
+   height: 100px;
+   margin-top: 50px;
+}
+.numbers .text-title{
+    margin-top: 20px;
+}
+
 }

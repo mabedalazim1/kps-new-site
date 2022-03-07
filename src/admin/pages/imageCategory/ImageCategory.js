@@ -20,9 +20,9 @@ import ListImgCatgery from './ListImgCatgery'
 import UpdateImgCatgery from './UpdateImgCatgery'
 import DeleteModal from '../../components/modal/Modal'
 import Message from '../../components/message/Message'
-import ImgGallery from './ImgGallery'
 import { useNavigate } from 'react-router-dom'
 
+import './imgGallery.css'
 const ImageCategory = () => {
     // Form data
     const initialState = {
@@ -70,10 +70,13 @@ const ImageCategory = () => {
     const [sortItems, setSortItems] = useState(false)
     const [disable, setDisable] = useState(false)
     const [nodata, setNoData] = useState(false)
+    const [catSection, setCatSection] = useState(false)
+    const [showAll, setShowAll] = useState(false)
+    const [showAllIcon, setShowAllIcon] = useState("sort-item-b fas fa-filter")
 
     const btnUpdate = useRef(null)
     const catItems = useSelector(state => state.imgCatogery)
-    const catSection = useSelector(state => state.imgCatBySection)
+    const allCatSection = useSelector(state => state.imgCatBySection)
     const errorMessage = useSelector(state => state.message)
     const dataMessage = useSelector(state => state.dataMessage)
     const catogeryData = useSelector(state => state.imgCatogryData)
@@ -93,6 +96,7 @@ const ImageCategory = () => {
         dispatch(retrieveImgSections())
         dispatch(retrieveImgCatogeries())
         dispatch(getImgSectionCatgorey())
+
         testTable()
     }
     useEffect(() => {
@@ -100,11 +104,30 @@ const ImageCategory = () => {
     }, [])
 
     useEffect(() => {
+        if (!showAll) {
+            setCatSection(allCatSection.filter(cat => cat.id > 6))
+        } else {
+            setCatSection(allCatSection.filter(cat => cat.id <= 6))
+        }
+    }, [allCatSection, showAll])
+
+    useEffect(() => {
         const timer = setTimeout(() =>
         setLoadItem(false), 1000)
         fetchData()
-        return () => clearTimeout(timer);
-    }, [loadItem]);
+        return () => clearTimeout(timer)
+    }, [loadItem])
+
+    const handleShowAll = () => {
+        if (showAll) {
+            setShowAllIcon("sort-item-b fas fa-filter")
+        } else {
+            setShowAllIcon("sort-item-b fa-solid fa-filter-circle-xmark")
+        }
+        setShowAll(!showAll)
+
+
+    }
     const sortItemClick = () => {
         if (sortIcon === "sort-item fas fa-sort-alpha-down-alt") {
             setSortIcon("sort-item fas fa-sort-alpha-up")
@@ -208,13 +231,19 @@ const ImageCategory = () => {
                             } }
                                 className={ sortIcon }
                                 title='Sort Data - ترتيب'
-                            > </i>
-                            <ListImgCatgery
+                                    > </i>
+                                    <i className={ showAllIcon }
+                                        title='عرض الكل'
+                                        onClick={ handleShowAll }
+                                    ></i>
+                                    { catSection &&
+                                        <ListImgCatgery
                                 tablename={ tablename }
                                 handelEdit={ handelEdit }
                                 catSection={ catSection }
                                 sortItems={ sortItems }
-                            />
+                                    />
+                                    }
                         </>
                     ) : editItem &&
                     <div>
@@ -260,32 +289,31 @@ const ImageCategory = () => {
                                     handelCancel={ handelCancel }
                                 />
                             </div>
-                        }
-                        {/* <ImgGallery
-                            catogeryData={ catogeryData }
-                            currentItem={ currentItem }
-                            handelCancel={ handelCancel }
-                        /> */}
+                                        }
                         <div className='img-gallery'>
                             <h5>معرض الصور</h5>
 
                             <section className='img-data'>
-                                <AddImage />
-                                { !catogeryData ? <h6 >لا يوجد صور لهذا الموضوع</h6> : catogeryData.map((catogery, index) => (
+                                                <AddImage id={ catItems.id } />
+                                                { !catogeryData ? <h6 >لا يوجد صور لهذا الموضوع</h6>
+                                                    :
+                                                    <div className='img-data-gallery-con'>
+                                                        { catogeryData.map((catogery, index) => (
+                                                            <div key={ index }>
+                                                                <img
+                                                                    className='img-data-gallery'
+                                                                    src={ `http://www.alkwtherps.com/api/static/uploads/images/${catogery.imgUrl}` } alt="img" />
+                                                            </div>
 
-                                    <div key={ index }>
-                                        <p>{ catogery.imgDesc }</p>
-                                        <p>{ catogery.imgUrl }</p>
-                                        <img src={  `http://www.alkwtherps.com/api/static/uploads/images/${catogery.imgUrl}`} alt="img" />
-                                    </div>
+                                                        )) }
+                                                    </div> }
 
-                                )) }
                             </section>
                             { catogeryData.length > 3 &&
                                 <>
-                                    <AddImage />
+                                                <AddImage id={ catItems.id } />
                                     <button
-                                        className='btn btn-primary'
+                                        className='btn btn-primary btn-back'
                                         onClick={ handelCancel }
                                     >
                                         رجوع
@@ -300,10 +328,10 @@ const ImageCategory = () => {
         </div>
     )
 }
-const AddImage = () => {
+const AddImage = ({ id }) => {
     const navigate = useNavigate()
     const addHandel = () => {
-        navigate('/admin/addimage')
+        navigate(`/admin/imagedata/${id}`)
     }
     return (
         <div className='add-img'>

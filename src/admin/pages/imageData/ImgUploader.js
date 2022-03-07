@@ -1,3 +1,4 @@
+import imageCompression from 'browser-image-compression';
 import Progress from "../../components/progress/Progress"
 import Message from "../../components/message/Message"
 import { useState, useRef, useEffect } from "react"
@@ -13,7 +14,7 @@ const ImgUploader = ({ addImgData,
   updateData,
 }) => {
 
-  const messageSizeError = "Image size cannot be larger than 2MB!"
+  const messageSizeError = "Image size cannot be larger than 6MB!"
   const imgBackPhath= '/assets/images/cam.png'
   const imgRef = useRef(null)
   const imgDivRef = useRef(null)
@@ -54,11 +55,14 @@ const ImgUploader = ({ addImgData,
       if (!myFile[0].type.match('image.*')) {
         alert(`File ${file.type} is not an image.`)
         setFile("")
+        setBackImg(true)
         return false
       }
-      if (myFile[0].size > 5242000) {
-        setMessage("Image size cannot be larger than 5MB!")
+      if (myFile[0].size > 7200000) {
+        alert("Image size cannot be larger than 6MB!")
+        setMessage("Image size cannot be larger than 6MB!")
         setFile("")
+        setBackImg(true)
         return false
       }
       setFile(e.target.files[0])
@@ -72,10 +76,15 @@ const ImgUploader = ({ addImgData,
   };
 
   const handelInputClick = async e => {
-
     try {
+      const options = {
+        maxSizeMB: 0.25,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true
+      }
+      const compressedFile = await imageCompression(file, options);
       const formData = new FormData();
-      formData.append('image', file)
+      formData.append('image', compressedFile)
       addImgData.current.click()
       submitRef.current.disabled = true
       const baseURL = process.env.REACT_APP_SERVER_URL

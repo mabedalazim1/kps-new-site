@@ -11,6 +11,7 @@ const ImageGallery = ({
 
     const navigate = useNavigate()
     const imgCatData = useSelector(state => state.imgCatogryData)
+
     const setCurentCatId = () => {
         localStorage.setItem("imgCatogeryId", currentCatId)
     }
@@ -49,7 +50,10 @@ const ImageGallery = ({
                                 <tr className='text-center' key={ index }>
                                     <th className='align-middle' scope='row'>{ index + 1 }</th>
                                     <td className='align-middle td-title'
-                                        onClick={()=>navigate( `/admin/updateimgdata/${item.id}`)}>
+                                        onClick={ () => {
+                                            navigate(`/admin/updateimgdata/${item.id}`)
+                                            setCurentCatId()
+                                        } }>
                                        
                                             { item.imgDesc }
                                        

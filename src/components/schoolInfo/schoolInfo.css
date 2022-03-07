@@ -122,7 +122,8 @@ color: var(--main-color);
     background-color: #f2f2f2;
     }
 .about-school img{
-    height: 80%;
+    height: auto !important;
+    width: 96% !important;
     border: 3px solid var(--main-color) !important;
     border-radius: 10px;
 }

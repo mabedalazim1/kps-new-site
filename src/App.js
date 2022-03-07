@@ -10,7 +10,8 @@ import EventBus from "./common/EventBus";
 import Home from './pages/home/Home'
 import NotFound from './pages/notFound/NotFound';
 import About from './pages/about/About';
-import ContactUs from './pages/contactUs/ContactUs';
+import Activity from './pages/activity/Activity';
+import ActivityData from './components/activity/ActivityData';
 import Manasa from './pages/manasa/Manasa';
 import AdminDashboard from './admin/AdminDashboard'
 import ImageSection from './admin/pages/imageSection/ImageSection';
@@ -52,7 +53,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='about' element={<About />} />
           <Route path='roiaa' element={<Roiaa />} />
-          <Route path='contactus' element={<ContactUs />} />                   
+            <Route path='activity' element={ <Activity /> } />
+            <Route path='activity:id' element={<ActivityData />} />    
         </Route>
         <Route path='/admin' element={ <AdminDashboard /> } >
             <Route path='home' element={ <AdminHome /> } />

@@ -1,21 +1,4 @@
-import { getImgListData } from './../admin/actions/listImagesData'
-import GroupData from './../services/groupingData'
-import store from './../store'
 
-store.dispatch(getImgListData(8))
-const imgListData = (store.getState().imgListData)
-
-let testData = []
-let newData = []
-
-if (imgListData.length > 0) {
-  testData = imgListData[0].imageCatogeries
-  testData.map(item => 
-    item.imageData.length > 0 &&   newData.push(item))
-}
-
-const groupData = GroupData.third(newData)
-console.log(groupData)
 const featuredData = [
   [ {
     id: 1,
@@ -59,4 +42,4 @@ const featuredData = [
 ]
 
 
-export { groupData, featuredData }
+export { featuredData }

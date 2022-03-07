@@ -14,7 +14,7 @@ import './editImg.css'
 
 const UpdateImageData = () => {
 
-   
+
     const { id } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -30,18 +30,18 @@ const UpdateImageData = () => {
         dispatch(retrieveImgDataById(id))
     }, [])
 
-    useEffect(() => { 
+    useEffect(() => {
         setLoading(!loading)
         showhData()
     }, [imgData])
-    
-    const showhData = async() => {
+
+    const showhData = async () => {
         await timer(500)
         setShowItem(true)
         setNoData(true)
         setCurrentItem(imgData)
     }
-    
+
     const handleInputChange = event => {
         const { name, value } = event.target;
         setCurrentItem({ ...currentItem, [name]: value })
@@ -57,7 +57,7 @@ const UpdateImageData = () => {
             <div className="formInput">
                 <h5>تعديل صورة</h5>
                 <div>
-                <Loading error={ errorMessage.message } nodata={ nodata } />
+                    <Loading error={ errorMessage.message } nodata={ nodata } />
                 </div>
                 { showItem && imgData &&
                     <form onSubmit={ (e) => e.preventDefault() }>
@@ -68,23 +68,16 @@ const UpdateImageData = () => {
                                 className="form-control"
                                 id="imgDesc"
                                 name="imgDesc"
-                                value={ currentItem.imgDesc ||"" }
+                                value={ currentItem.imgDesc || "" }
                                 onChange={ handleInputChange }
                             />
                         </div>
-                        {/* <div className="form-group">
-                            <label htmlFor="sectionDesc">الوصف</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="imgUrl"
-                                name="imgUrl"
-                                value={ currentItem.imgUrl ||""}
-                                onChange={ handleInputChange }
-
-                            />
-                        </div> */}
                         <div className='edit-control'>
+                            <button
+                                className='btn btn-info'
+                                onClick={ () => navigate(-1) }>
+                                إلغاء
+                            </button>
                             <button
                                 onClick={ () => {
                                     updateItem(currentItem.id)

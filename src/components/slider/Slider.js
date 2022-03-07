@@ -13,36 +13,37 @@ import SwiperCore, {
   EffectFade,Navigation,Pagination
 } from 'swiper';
 
-import { featuredData } from './../../data/data'
+
 // install Swiper modules
 SwiperCore.use([EffectFade, Navigation, Pagination]);
 
-const Slider = () => {
+const Slider = ({ catItems }) => {
   
-
+  
+  const URL = process.env.REACT_APP_SERVER_URL + "images/"
   return (
     <>
       <Swiper dir="rtl" spaceBetween={ 10 } navigation={ true }
         className="mySwiper">
-        { Object.values(featuredData).map((items, itemIndex) => (
-          Object.values(items).map((item, index) => (
+        {catItems && catItems.length >0  && catItems[0].imageCatogeries.map((item, index) => (
+         
             <SwiperSlide key={ index }>
 
               <div key={ index } className="featured-news-item">
               <div className="img-desc">
-                  <span><h5>{ item.imgDesc } </h5></span>
+                  <span><h5>{ item.catDesc } </h5></span>
                 </div>
                 <div className="featured-title">
-                  <h2>{ item.imgTitle }</h2>
+                  <h2>{ item.title }</h2>
                 </div>
                 <div className="image">
-                  <img src={ item.imgUrl } alt="" />
+                  <img src={ URL + item.imageData[0].imgUrl } alt="" />
                 </div>
                
               </div>
             </SwiperSlide>
             
-          ))))}
+          ))}
        
       </Swiper>
     </>

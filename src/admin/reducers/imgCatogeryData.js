@@ -1,10 +1,13 @@
-import { GET_IMG_CATOGERY_DATA,  CLEAR_IMG_CATOGERY_DATA,} from '../actions/types'
+import { GET_IMG_CATOGERY_DATA,  CLEAR_IMG_CATOGERY_DATA, GET_ALL_IMG_CATOGERY_DATA} from '../actions/types'
 
 const initialState = []
 
 const imgCatogeryDataReducer = (imgCatogery = initialState, action) => {
     const { type, payload } = action
     switch (type) { 
+        case GET_ALL_IMG_CATOGERY_DATA:
+            return payload 
+        
         case GET_IMG_CATOGERY_DATA:
             return payload 
         

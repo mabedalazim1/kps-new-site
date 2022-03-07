@@ -1,8 +1,46 @@
 import './about.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllImgCatogeryData } from './../../admin/actions/imgDataByCat'
+import { useState, useEffect } from 'react'
+import Footer from './../../components/footer/Footer'
+import ImportantNumber from './../../components/importantNumber/ImportantNumber'
 import CoverSubPages from '../../components/coverSubPages/CoverSubPages';
-const About = () => {
-    const title = "مدرستنا"
+import CertificateSlider from '../../components/slider/CertificateSlider';
 
+const About = () => {
+    const dispatch = useDispatch()
+    const certificateData = useSelector(satae => satae.imgCatogryData)
+    const [certificate, setCertificate] = useState([])
+
+
+
+    const fetchData = () => {
+        dispatch(getAllImgCatogeryData())
+    }
+
+    const testData = () => {
+        let data = []
+        certificateData.map((item, index) => {
+            if (item.imageCatogery.title === "Certificate") {
+                data.push({ imgUrl: item.imgUrl, imgDesc: item.imgDesc })
+            }
+            return false
+        }
+        )
+        setCertificate(data)
+    }
+
+    useEffect(() => {
+        fetchData()
+        document.title = process.env.REACT_APP_PAGE_TITLE_B + " عن المدرسة"
+    }, [])
+    useEffect(() => {
+        if (certificateData && certificateData.length > 0) {
+            testData()
+        }
+    }, [certificateData])
+
+    const title = "مدرستنا"
     const background = {
         background: "url(/assets/images/IMG-Back-22.jpg)"
     }
@@ -22,24 +60,27 @@ const About = () => {
                             <i className="fas fa-quote-right"></i>
                         </p>
                         <p className="text-con">
-                            بصفتك مديرًا ، أتمنى لك ترحيبًا حارًا في مدرستنا! نحن في قلب مجتمع لندن وفي عام 2010 نجحنا في
-                            تزويد العائلات المحلية بتعليم ممتاز يقدمه مدرسون استثنائيون في مرافق حائزة على جوائز.
-
-                            حكمت Ofsted على أنها مدرسة جيدة يمكن رؤية إنجازاتنا من خلال التحسينات السريعة في التعليم. نحن
-                            أيضًا نخطو خطوات رئيسية نحو إنشاء مدرسة تحدث فرقًا كبيرًا في المجتمع الذي نخدمه وتوفر فرصًا
-                            لجميع طلابنا وطلابنا.
-
-                            السيدة جوانا ماكويد ، مديرة
+                            أنه من دواعى سرورنا قيامكم بزيارة موقع مدرستنا .. ونرحب بكم أعضاء فى
+                            مجتمعنا التعليمي لنعمل سوياً على النهوض بالعملية التعليمية
+                            . فرؤيتنا هى إعداد متعلم متميز علمياً و خلقياً منتمِ لوطنه، قادراً على استخدام
+                            التكنولوجيا المتاحة.
+                            ونتمنى أن نعمل سوياً على النهوض بمجتمعنا ومساعدة أبنانئنا على مواصلة التعلم
+                            مدى الحياة .والتزالمهم بالخلق الحسن والتفوق دائماً، وأن تتشكل لديهم القدرة على الإبداع
+                            و الابتكار ، ونغرس سوياً فى نفسوسهم الهوية الوطنية .
+                            مدير المدرسة &nbsp; أ / &nbsp; أحمد محمد على حسانين
                         </p>
-
                         <p className="text-icon-left">
                             <i className="fas fa-quote-left"></i>
                         </p>
                     </div>
-
                 </div>
-                <img className="about-img" src="/assets/images/students/std-1.jpg" alt="img" />
+                <img className="about-img" src="/assets/images/about-2.png" alt="img" />
             </div>
+
+
+            <CertificateSlider certificate={ certificate } />
+            <ImportantNumber />
+            <Footer />
         </main>
 
     );

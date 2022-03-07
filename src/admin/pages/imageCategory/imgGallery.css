@@ -18,3 +18,27 @@
  .add-img{
     text-align: right;
 }
+.img-gallery .img-data-gallery-con{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    flex-wrap: wrap;
+    direction: rtl;
+    margin-bottom: 50px;
+}
+
+.img-gallery .img-data-gallery{
+    height: 150px;
+    margin: 20px;
+}
+.img-gallery .btn-back{
+    margin-top: -50px;
+}
+/*Small */
+@media (max-width: 768px) {
+    .img-gallery .img-data-gallery-con{
+        justify-content: center;
+    }
+}

@@ -22,9 +22,10 @@ const NavBar = () => {
   
   const navItems = [
     {title:"الرئيسية",link:"/"},
-    {title:"المنصة",link:"/manasa"},
+    { title: "المنصة", link: "/manasa" },
+    { title: "عن المدرسة", link: "/about" },
     {title:"رؤيتنا",link:"/roiaa"},
-    {title:" أخر الأخبار",link:"/contactus"},
+    { title: " أخر الأخبار", link: "/activity" },
   ]
   const changNavBar = () => {
     if (scroll >= 500) {

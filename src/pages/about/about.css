@@ -1,6 +1,9 @@
 .about-page .about-text{
     margin-top: 60vh;
 }
+.about-page .sub-page-cover{
+    background-position: center !important;
+}
 
 .about-page .welcome{
     display: flex;

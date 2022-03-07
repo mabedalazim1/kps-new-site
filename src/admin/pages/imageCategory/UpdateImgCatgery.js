@@ -30,7 +30,7 @@ const UpdateImgCatgery = ({  setCurrentItem, currentItem, inputs }) => {
                     name="imageSectionId"
                     id="imageSectionId"
                     required="input is required"
-                        value={ currentItem.imageSectionId }
+                        value={ currentItem.imageSectionId || ""}
                         onChange={handleInputChange}
                 >
                     { sectionData.map((option) => (

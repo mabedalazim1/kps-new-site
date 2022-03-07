@@ -61,6 +61,12 @@
 .item-section .sort-item{
     position: absolute;
     top: 60px;
+    left: 15%;
+    text-align: center;
+}
+.item-section .sort-item-b{
+    position: absolute;
+    top: 60px;
     left: 10%;
     text-align: center;
 }
