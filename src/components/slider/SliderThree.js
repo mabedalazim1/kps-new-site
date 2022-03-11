@@ -32,11 +32,21 @@ const SliderThree = ({ catItems }) => {
   useEffect(() => {
     addData()
   },[catItems])
-
+  console.log(data)
   return (
     <>
       <Swiper dir="rtl" spaceBetween={ 10 } navigation={ true }
         className="mySwiper">
+        { data.length === 0 &&
+          <SwiperSlide>
+          <div className="featured-news-item">
+           
+            <div className="image">
+                <img src="/assets/images/loading.gif" alt="" />
+                
+              </div>
+          </div>
+          </SwiperSlide> }
         { data && data.map((items,index) =>
             <SwiperSlide key={ index}>
               { items.map((item, index) => (

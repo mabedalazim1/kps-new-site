@@ -1,4 +1,6 @@
 import './activity.css'
+import ImportantNumber from '../../components/importantNumber/ImportantNumber';
+import Footer from '../../components/footer/Footer';
 import CoverSubPages from '../../components/coverSubPages/CoverSubPages';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { getImgListData } from './../../admin/actions/listImagesData'
 
 const Activity = () => {
+
 
     const activity = useSelector(state => state.imgListData)
     const dispatch = useDispatch()
@@ -24,8 +27,7 @@ const Activity = () => {
     }, [])
 
     const handleClick = (item) => {
-        console.log(item.imageData[0].id)
-        navigate("/activity:" + item.imageData[0].id)
+        navigate("/activity:" + item.id)
     }
 
     const title = "أخر الأخبار"
@@ -34,6 +36,7 @@ const Activity = () => {
     }
     return (
         <main className='activity-page' >
+            { console.log(activity) }
             <CoverSubPages
                 title={ title }
                 background={ background }
@@ -44,7 +47,7 @@ const Activity = () => {
                 </div>
                
                 <div className='activity-con'>
-                    { activity && activity.length > 0 && activity[0].imageCatogeries.map((item, index) => (
+                    { activity && activity.length > 0 ? activity[0].imageCatogeries.map((item, index) => (
                         <div
                             key={ index }>
 
@@ -56,12 +59,18 @@ const Activity = () => {
                                 { item.title }
                             </p>
                         </div>
-                    )) }
+                    ))
+                        :
+                        <div>
+                             <img src='/assets/images/loading.gif' alt=''/>
+                        </div>
+                    }
                 </div>
 
 
             </div>
-
+            <ImportantNumber />
+            <Footer />
         </main>
     );
 }

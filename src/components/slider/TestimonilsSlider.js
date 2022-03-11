@@ -38,7 +38,24 @@ export default function TestimonilsSlider({ testimonials }) {
                     </div>
                 </SwiperSlide>
                 ))
-            }
+                }
+                { testimonials.length=== 0 && 
+                            <SwiperSlide>
+                            <div className='container testimonials-con'>
+                                <img
+                                    className='testimonials-img'
+                                    src="/assets/images/loading.gif"
+                                    alt=''
+                                />
+                                <div className="testimonials-text">
+                                    <p>
+                                        جارى التحميل ...
+                                    </p>
+                                </div>
+        
+                            </div>
+                        </SwiperSlide>
+                }
            
                
             </Swiper>

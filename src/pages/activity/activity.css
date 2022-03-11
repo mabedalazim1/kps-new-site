@@ -3,6 +3,7 @@
 }
 .activity-page .activity-text{
     margin-top: 60vh;
+   
 }
 .activity-page .title-con{
     display: flex;
@@ -41,6 +42,9 @@
 }
 .activity-con p:hover{
     cursor: pointer;
+}
+.activity-con .active-one:hover{
+    cursor: default;
 }
 /*Medim */
 @media (max-width: 992px) {

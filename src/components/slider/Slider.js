@@ -25,25 +25,43 @@ const Slider = ({ catItems }) => {
     <>
       <Swiper dir="rtl" spaceBetween={ 10 } navigation={ true }
         className="mySwiper">
-        {catItems && catItems.length >0  && catItems[0].imageCatogeries.map((item, index) => (
+        { catItems && catItems.length > 0 && catItems[0].imageCatogeries.map((item, index) => (
          
-            <SwiperSlide key={ index }>
+          <SwiperSlide key={ index }>
 
-              <div key={ index } className="featured-news-item">
+            <div key={ index } className="featured-news-item">
               <div className="img-desc">
-                  <span><h5>{ item.catDesc } </h5></span>
-                </div>
-                <div className="featured-title">
-                  <h2>{ item.title }</h2>
-                </div>
-                <div className="image">
-                  <img src={ URL + item.imageData[0].imgUrl } alt="" />
-                </div>
-               
+                <span><h5>{ item.catDesc } </h5></span>
               </div>
-            </SwiperSlide>
+              <div className="featured-title">
+                <h2>{ item.title }</h2>
+              </div>
+              <div className="image">
+                <img src={ URL + item.imageData[0].imgUrl } alt="" />
+              </div>
+               
+            </div>
+          </SwiperSlide>
             
-          ))}
+        )) }
+
+        { catItems.length === 0 &&
+          <SwiperSlide>
+           <div className="featured-news-item">
+        <div className="img-desc">
+            <span><h5> جارى التحميل</h5></span>
+          </div>
+          <div className="featured-title">
+            <h2>أخر الأخبار</h2>
+          </div>
+          <div className="image">
+            <img src='/assets/images/loading.gif' alt='' />
+          </div>
+         
+        </div>
+          </SwiperSlide>
+       
+          }
        
       </Swiper>
     </>

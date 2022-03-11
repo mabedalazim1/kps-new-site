@@ -22,6 +22,7 @@ export const getImgListData = (id) => async (dispatch) => {
             type: SET_DATA_MESSAGE,
             payload: res.data.message,
         })
+        return "ok"
         
     } catch (err) {
         const message = err.message
@@ -33,5 +34,7 @@ export const getImgListData = (id) => async (dispatch) => {
             type: CLEAR_DATA_MESSAGE
         })
         console.log(err)
+        return "Err"
     }
+
 }
