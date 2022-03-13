@@ -1,5 +1,5 @@
 import './footer.css';
-
+import React from 'react';
 const Footer = () => { 
     return (
         <footer className='admin-footer'>

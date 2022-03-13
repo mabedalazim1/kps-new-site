@@ -1,4 +1,5 @@
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-fade"
 import "swiper/css/navigation"
@@ -18,9 +19,7 @@ import GroupData from './../../services/groupingData'
 // install Swiper modules
 SwiperCore.use([EffectFade, Navigation, Pagination]);
 
-
 const SliderThree = ({ catItems }) => {
-    
   const [data, setData] = useState([])
   const URL = process.env.REACT_APP_SERVER_URL + "images/"
  
@@ -32,7 +31,13 @@ const SliderThree = ({ catItems }) => {
   useEffect(() => {
     addData()
   },[catItems])
-  console.log(data)
+
+  const navigation = useNavigate()
+
+  const handleClick = (id) => {
+    navigation('/activity:' + id)
+  }
+
   return (
     <>
       <Swiper dir="rtl" spaceBetween={ 10 } navigation={ true }
@@ -59,8 +64,8 @@ const SliderThree = ({ catItems }) => {
                 <h2>{ item.title }</h2>
                  </div>
                  <div className="image">
-                  <img src={ URL + item.imageData[0].imgUrl } alt="" />
-                  
+                      <img src={ URL + item.imageData[0].imgUrl } alt=""
+                        onClick={ () => handleClick(item.id) } />
                  </div>
                 </div>
               </div>

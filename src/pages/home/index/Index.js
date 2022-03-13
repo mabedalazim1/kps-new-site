@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import NavBar from "../../../components/navBar/NavBar"
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 const Index = () => {
     useEffect(() => {

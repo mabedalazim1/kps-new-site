@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router'
 import { retrieveImgCatogeries } from '../../actions/imageCategory'
 import { getCustmImgCatData, clearImgCatData } from '../../actions/imgDataByCat'

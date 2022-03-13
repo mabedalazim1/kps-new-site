@@ -26,9 +26,10 @@
         margin-top: 15px;
        display: block;
        flex: 1; 
+       font-size: 14px;
        text-align: center;
        justify-content: center;
-       padding-left: 50px;
+       padding-left: 40px;
        font-family: var(--font-ar-c);
        color: var(--main-color-d);
        }

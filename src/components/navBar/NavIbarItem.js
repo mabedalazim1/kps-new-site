@@ -1,8 +1,10 @@
 import{ useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import React from 'react'
 
 const NavbarItem = ({ navItems, closeMenu }) => {
     const loction = useLocation().pathname
+
 
     return (
         <>

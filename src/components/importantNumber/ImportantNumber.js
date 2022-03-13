@@ -1,8 +1,8 @@
 import './importantNumber.css'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import AnimatedNumbers from "react-animated-numbers";
 
-const ImportantNumber = () => {
+const ImportantNumber = ({ img }) => {
     const [num1, setNum1] = useState(65);
     const [num2, setNum2] = useState(97);
     const [num3, setNum3] = useState(32);
@@ -14,7 +14,8 @@ const ImportantNumber = () => {
                 <div
                     className='important-numbers'
                     style={ {
-                        backgroundImage: `url(/assets/images/back-4.jpg)`
+
+                        backgroundImage: `url(${img})`
                     } }
                 >
                     <div className='overlay'>
@@ -90,5 +91,7 @@ const ImportantNumber = () => {
         </>
     )
 }
-
+ImportantNumber.defaultProps ={
+    img:"/assets/images/back-4.jpg"
+}
 export default ImportantNumber

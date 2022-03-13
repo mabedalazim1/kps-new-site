@@ -1,9 +1,11 @@
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+
 import "./styles.css";
 
 // import required modules
@@ -43,7 +45,7 @@ export default function TestimonilsSlider({ testimonials }) {
                             <SwiperSlide>
                             <div className='container testimonials-con'>
                                 <img
-                                    className='testimonials-img'
+                                className='testimonials-img squer'
                                     src="/assets/images/loading.gif"
                                     alt=''
                                 />

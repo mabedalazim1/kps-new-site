@@ -1,5 +1,6 @@
 
 import './lastNews.css'
+import React from 'react'
 import FeaturedNews from '../featuredNews/FeaturedNews'
 
 const LastNews = () => {

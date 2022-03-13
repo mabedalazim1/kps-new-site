@@ -31,7 +31,7 @@ class GroupData {
         let fliterData = []
 
         if (model.length > 0) {
-            testData = model[0].imageCatogeries
+            testData = model[0].imageCatogeries.slice(0).reverse()
             testData.map(item =>
                 item.imageData.length > 0 && fliterData.push(item))
         }

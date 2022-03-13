@@ -1,4 +1,5 @@
 import FormInput from "../../components/formInput/FormInput";
+import React from "react";
 
 const AddImgSection = ({handleSubmit,inputs,values, onChange,addItem, setAddItem, errorMessage}) => {
     return (

@@ -1,9 +1,8 @@
 .item-section{
     margin: 0 auto;
-    min-width: 350px;
     width: 100%;
     min-height: 81vh;
-   position: relative;
+    position: relative;
 
 }
 .item-section h4{
@@ -12,10 +11,9 @@
 }
 .item-section .table{
     direction: rtl;
-   width:95%;
-   min-width: 350px;
-   margin: 30px auto;
-   overflow: scroll;
+    width:95%;
+    margin: 30px auto;
+    overflow: scroll;
 }
 .item-section i{
     cursor: pointer;

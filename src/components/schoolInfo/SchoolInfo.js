@@ -20,7 +20,7 @@ const SchoolInfo = () => {
             . يحب أن يكون كلا من الوالدين حاصلاً على مؤهل مناسب
           </p>
           <p className='button'>
-            <MoreButton />
+            <MoreButton link="/about"/>
           </p>
         </div>
         <div className='info-img'>

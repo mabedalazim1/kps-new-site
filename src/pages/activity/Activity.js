@@ -1,4 +1,5 @@
 import './activity.css'
+import React, { useState } from 'react'
 import ImportantNumber from '../../components/importantNumber/ImportantNumber';
 import Footer from '../../components/footer/Footer';
 import CoverSubPages from '../../components/coverSubPages/CoverSubPages';
@@ -17,6 +18,7 @@ const Activity = () => {
 
     const fetchData = () => {
         dispatch(getImgListData(2))
+        window.scrollTo(0, 0)
     }
 
     useEffect(() => {
@@ -36,7 +38,7 @@ const Activity = () => {
     }
     return (
         <main className='activity-page' >
-            { console.log(activity) }
+
             <CoverSubPages
                 title={ title }
                 background={ background }
@@ -45,9 +47,9 @@ const Activity = () => {
                 <div className='title-con'>
                      <p className='main-title'>أنشطة الطلاب</p>
                 </div>
-               
+
                 <div className='activity-con'>
-                    { activity && activity.length > 0 ? activity[0].imageCatogeries.map((item, index) => (
+                    { activity && activity.length > 0 ? activity[0].imageCatogeries.slice(0).reverse().map((item, index) => (
                         <div
                             key={ index }>
 
@@ -69,8 +71,8 @@ const Activity = () => {
 
 
             </div>
-            <ImportantNumber />
-            <Footer />
+            <ImportantNumber img="/assets/images/IMG_importatnNm-3.jpg" />
+            <Footer img="/assets/images/footer-3.jpg" />
         </main>
     );
 }

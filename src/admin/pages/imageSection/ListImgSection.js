@@ -1,3 +1,4 @@
+import React from 'react';
 
 const ListImgSection = ({ items, sortItems, tablename, handelEdit }) => {
 

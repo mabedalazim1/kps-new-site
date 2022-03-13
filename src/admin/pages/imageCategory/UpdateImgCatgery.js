@@ -1,6 +1,6 @@
 import {  useSelector, useDispatch } from "react-redux"
 import { retrieveImgSections } from './../../actions/imgSection'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 const UpdateImgCatgery = ({  setCurrentItem, currentItem, inputs }) => {
 

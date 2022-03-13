@@ -23,7 +23,7 @@
 }
 
 .last-news .tab{
-    margin: 50px 120px;
+    margin: 50px 20px;
 }
 
  /*Medim */ 
@@ -33,7 +33,7 @@
 /*Small */
 @media (max-width: 768px) {
     .last-news{
-        margin-top: 0px;
+        margin-top: -150px;
     }
     .last-news-img{
         margin-bottom: -10px;
@@ -50,5 +50,6 @@
     }
     .last-news .tab{
         margin: 5px;
+        width: 100%;
     }
 }

@@ -1,5 +1,5 @@
 import Sidebar from "./components/sidebar/Sidebar";
-import { useState } from "react";
+import React, { useState } from "react";
 import './adminDashboard.css'
 import closeSymbol from '../assest/svg/close.svg'
 import menuSymbol from '../assest/svg/menu.svg'

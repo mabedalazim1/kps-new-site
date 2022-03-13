@@ -1,12 +1,20 @@
 import './sidebar.css'
 import { MdOutlineAdminPanelSettings } from 'react-icons/md'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Itemelist from '../sidebarList/Itemelist'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../actions/auth'
 
 const Sidebar = ({ handleClick }) => {
     const [isActiveList, setIsActiveList] = useState(0)
   const [isClicked, setIsClicked] = useState(0)
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  }
   
     const handleActiveList=(index) => {
       setIsActiveList(index)
@@ -17,6 +25,7 @@ const Sidebar = ({ handleClick }) => {
     { title: "الأقسام", link: "sections" },
     { title: "الموضوعات", link: "categories" },
     { title: " الصور", link: "imagedata" },
+    { title: "الرئسية", link: "/" },
   ]
   return (
       <aside className='sidebar'>
@@ -34,6 +43,14 @@ const Sidebar = ({ handleClick }) => {
               isClicked={ isClicked }
               handleClick={handleClick}
             />
+            <li
+              className='list-item'
+              onClick={ handleLogout }>
+              <NavLink to='/'>
+                خروج
+              </NavLink>
+
+            </li>
                 </div>
          
         </div>

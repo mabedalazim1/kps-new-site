@@ -19,14 +19,15 @@ const NavBar = () => {
   
   const handleClick = () => setClick(!click)
   const closeMenu = () => setClick(false)
-  
+
   const navItems = [
     {title:"الرئيسية",link:"/"},
     { title: "المنصة", link: "/manasa" },
     { title: "عن المدرسة", link: "/about" },
-    {title:"رؤيتنا",link:"/roiaa"},
     { title: " أخر الأخبار", link: "/activity" },
   ]
+
+
   const changNavBar = () => {
     if (scroll >= 500) {
       setNavBar(true)
@@ -34,6 +35,7 @@ const NavBar = () => {
       setNavBar(false)
     }
   }
+
   useEffect(() => {
     changNavBar()
   })
@@ -42,8 +44,6 @@ const NavBar = () => {
   const handelLogout = () => {
     dispatch(logout())
   }
-
-  
 
   return (
     <>
@@ -63,16 +63,37 @@ const NavBar = () => {
              
               <div className='login-con'>
 
-              { currentUser ? (
-                  <li onClick={ () => {
+                { currentUser ? (
+                  <React.Fragment>
+                    { currentUser.roles[0] === "ROLE_ADMIN" && <li>
+                      <NavLink to='/admin'>
+                        إدارة
+                      </NavLink>
+
+                    </li>
+                    }
+                    <div className='user-con'>
+                      <li>
+                        <span> { currentUser.username } &nbsp;</span>
+                        <span>مرحباً !</span>
+                        <img
+                          className='avtatar-img'
+                          src='/assets/images/avatar.png' alt='' />
+                      </li>
+
+                    </div>
+
+
+                    <li onClick={ () => {
                     handelLogout()
                     handleClick()
-                  } }>
-                 <NavLink to='/'>
-                     خروج
-                    {currentUser.username}
-                 </NavLink>
-                 </li>
+                    } }>
+                      <NavLink to='/'>
+                        خروج &nbsp; &nbsp;
+                        <i className="fas fa-sign-out-alt"></i>
+                      </NavLink>
+                    </li>
+                  </React.Fragment>
               ) : (
                 <li>
                 <NavLink to='/login'>

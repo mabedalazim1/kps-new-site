@@ -71,6 +71,14 @@ footer .footer-logo{
     text-shadow: 1px 2px 2px var(--main-color) ;
 }
 
+.footer a{
+    text-decoration: none;
+    color: #fff;
+}
+.footer a:hover{
+    color: var(--main-color);
+    cursor: pointer;
+}
 /*Medim */
 @media (max-width: 992px) {
     
@@ -97,10 +105,15 @@ footer .footer-logo{
         margin-bottom: 40px;
         font-size: 13px;
     }
+    footer .footer-logo{
+        height: 300px;
+    }
     .footer-logo img{
-        height: 350px;
+        height: 200px;
+        padding-bottom: 20px;
     }
     .footer-sub-title{
-        font-size:16px;
+        margin-top: 10px;
+        font-size:14px;
     }
 }

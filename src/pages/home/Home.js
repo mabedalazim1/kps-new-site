@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import SchoolInfo from "./../../components/schoolInfo/SchoolInfo"
 import LastNews from "./../../components/lastNews/LastNews"
 import ImportantNumber from "./../../components/importantNumber/ImportantNumber"
@@ -17,6 +17,7 @@ const Home = () => {
   const fetchData = () => {
     dispatch(getImgListData(2))
     dispatch(getAllImgCatogeryData())
+    window.scroll(0, 0)
   }
 
   const testData = () => {

@@ -1,9 +1,9 @@
 import imageCompression from 'browser-image-compression';
 import Progress from "../../components/progress/Progress"
 import Message from "../../components/message/Message"
-import { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import axios from 'axios'
-import {  formImgDataSubmit } from '../../services/formPost'
+import { formImgDataSubmit } from '../../services/formPost'
 import './imageUploader.css'
 
 
@@ -15,7 +15,7 @@ const ImgUploader = ({ addImgData,
 }) => {
 
   const messageSizeError = "Image size cannot be larger than 6MB!"
-  const imgBackPhath= '/assets/images/cam.png'
+  const imgBackPhath = '/assets/images/cam.png'
   const imgRef = useRef(null)
   const imgDivRef = useRef(null)
   const [message, setMessage] = useState('');
@@ -66,7 +66,7 @@ const ImgUploader = ({ addImgData,
         return false
       }
       setFile(e.target.files[0])
-      
+
       const formData = new FormData();
       formData.append('image', file);
       setLocalFile(URL.createObjectURL(e.target.files[0]))
@@ -78,7 +78,7 @@ const ImgUploader = ({ addImgData,
   const handelInputClick = async e => {
     try {
       const options = {
-        maxSizeMB: 0.25,
+        maxSizeMB: 0.2,
         maxWidthOrHeight: 1920,
         useWebWorker: true
       }
@@ -114,7 +114,7 @@ const ImgUploader = ({ addImgData,
       fetchImgData(fileName)
       setValues([])
       localStorage.setItem("catId", imageCatogeryId)
-    
+
     } catch (err) {
       console.log(err)
       if (err.response.status === 500) {
@@ -124,86 +124,86 @@ const ImgUploader = ({ addImgData,
       }
       setUploadPercentage(0)
     }
-    
+
   };
 
   const fetchImgData = (fileName) => {
-    
+
     formImgDataSubmit({
-      imgDesc: values.imgDesc === undefined ? "": values.imgDesc,
+      imgDesc: values.imgDesc === undefined ? "" : values.imgDesc,
       imgUrl: fileName,
-      imageCatogeryId: imageCatogeryId ,
+      imageCatogeryId: imageCatogeryId,
     })
     updateData()
 
-}
+  }
   return (
     <div className="img-data">
-    
-    <div className="img-upload">
-      <h5 className='text-center mt-3'>إضافة صورة</h5>
-      <form onSubmit={ onSubmit }>
-        <div className='custom-file mb-4'>
-          <div
-            className={ localFile.length === 0 && !backImg ? 'img-con' : 'img-con local' }
-            ref={imgDivRef}>
-            <img src={
-              localFile.length === 0 ? imgBackPhath :
-              backImg ? imgBackPhath: localFile
-            }
-              alt='img'
-              ref={imgRef}
-              onClick={ () => {
-                uploadPercentage === 0 && uploadPercentage < 1
-                && inputRef.current.click()
-                setBackImg(false)
-              } }
-              className={ uploadPercentage < 1 ? "" : "img-progress" }
-            />
-            <input
-              type='file'
-              accept="image/*"
-              className='custom-file-input input-file'
-              id='customFile'
-              onChange={  onChangeFile }
-              ref={ inputRef }
-            />
-            { message === messageSizeError &&
-              
-              <p
-                className="error"
-                style={ { marginTop: "-30px", textAlign: "center" } }>{ message }
-              </p> }
+
+      <div className="img-upload">
+        <h5 className='text-center mt-3'>إضافة صورة</h5>
+        <form onSubmit={ onSubmit }>
+          <div className='custom-file mb-4'>
+            <div
+              className={ localFile.length === 0 && !backImg ? 'img-con' : 'img-con local' }
+              ref={ imgDivRef }>
+              <img src={
+                localFile.length === 0 ? imgBackPhath :
+                  backImg ? imgBackPhath : localFile
+              }
+                alt='img'
+                ref={ imgRef }
+                onClick={ () => {
+                  uploadPercentage === 0 && uploadPercentage < 1
+                    && inputRef.current.click()
+                  setBackImg(false)
+                } }
+                className={ uploadPercentage < 1 ? "" : "img-progress" }
+              />
+              <input
+                type='file'
+                accept="image/*"
+                className='custom-file-input input-file'
+                id='customFile'
+                onChange={ onChangeFile }
+                ref={ inputRef }
+              />
+              { message === messageSizeError &&
+
+                <p
+                  className="error"
+                  style={ { marginTop: "-30px", textAlign: "center" } }>{ message }
+                </p> }
+            </div>
           </div>
-        </div>
-      </form>
-      <div className='btn-con'>
-        <button
-          className='btn btn-success mt-4 mr-4'
+        </form>
+        <div className='btn-con'>
+          <button
+            className='btn btn-success mt-4 mr-4'
             onClick={ handelInputClick }
             ref={ submitRef }
-          disabled={ localFile.length !== 0 && !backImg ? false : true }
-        >
-          حفظ
-        </button>
-        <button className='btn btn-info mt-4 mr-4'
-          onClick={ () => inputRef.current.click() }
-          disabled={ uploadPercentage === 0 ? false : true }
-        >
-          اختر
-        </button>
-        <Progress percentage={ uploadPercentage } />
+            disabled={ localFile.length !== 0 && !backImg ? false : true }
+          >
+            حفظ
+          </button>
+          <button className='btn btn-info mt-4 mr-4'
+            onClick={ () => inputRef.current.click() }
+            disabled={ uploadPercentage === 0 ? false : true }
+          >
+            اختر
+          </button>
+          <Progress percentage={ uploadPercentage } />
 
-        
-      </div>
-{ message && message !== messageSizeError &&
+
+        </div>
+        { message && message !== messageSizeError &&
           <div className="message-con">
             <Message msg={ message }
               delay={ message === "There was a problem with the server" ? 5000 : 3000 } />
           </div>
-          
+
         }
-    </div>
+      </div>
     </div>
   )
 }

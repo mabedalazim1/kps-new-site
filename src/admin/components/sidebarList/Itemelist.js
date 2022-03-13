@@ -1,5 +1,6 @@
 import{ useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import React from 'react'
 
 const Itemelist = ({ itemsList, handleActiveList, handleClick }) => {
    const loctionIndex = useLocation().pathname.split("/").length-1
@@ -22,10 +23,11 @@ const Itemelist = ({ itemsList, handleActiveList, handleClick }) => {
                  to={ itemText.link }
               >{ itemText.title }</NavLink>
                </li>
-           
+
                 
         
-      ))} 
+        )) }
+         
         </>
     );
 }

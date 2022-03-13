@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router'
 import { useSelector, useDispatch } from "react-redux"
 import { retrieveImgDataById } from './../../actions/imageData'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { updateImgData } from './../../actions/imageData'
 import { getCustmImgCatData } from '../../actions/imgDataByCat'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'

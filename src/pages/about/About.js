@@ -1,7 +1,7 @@
 import './about.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllImgCatogeryData } from './../../admin/actions/imgDataByCat'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from './../../components/footer/Footer'
 import ImportantNumber from './../../components/importantNumber/ImportantNumber'
 import CoverSubPages from '../../components/coverSubPages/CoverSubPages';
@@ -16,6 +16,7 @@ const About = () => {
 
     const fetchData = () => {
         dispatch(getAllImgCatogeryData())
+        window.scrollTo(0, 0)
     }
 
     const testData = () => {
@@ -74,13 +75,13 @@ const About = () => {
                         </p>
                     </div>
                 </div>
-                <img className="about-img" src="/assets/images/about-2.png" alt="img" />
+                <img className="about-img" src="/assets/images/about-2.jpg" alt="img" />
             </div>
 
 
             <CertificateSlider certificate={ certificate } />
-            <ImportantNumber />
-            <Footer />
+            <ImportantNumber img="/assets/images/IMG_importatnNm-1.jpg" />
+            <Footer img="/assets/images/footer-2.jpg"/>
         </main>
 
     );

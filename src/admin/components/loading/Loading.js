@@ -1,4 +1,5 @@
 import LoadingBar from 'react-redux-loading-bar'
+import React from 'react';
 import './loading.css'
 const Loading = ({ error, nodata=false }) => {
     return (

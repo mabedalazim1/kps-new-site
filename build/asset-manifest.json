@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4bd086c4.css",
-    "main.js": "/static/js/main.18b5e733.js",
+    "main.css": "/static/css/main.e82b78da.css",
+    "main.js": "/static/js/main.a32dcb41.js",
     "static/media/Mukta-Regular.ttf": "/static/media/Mukta-Regular.b8d37293b2db3179daa9.ttf",
     "static/media/Mukta-ExtraBold.ttf": "/static/media/Mukta-ExtraBold.b1fa1110850baa4320ba.ttf",
     "static/media/Mukta-Medium.ttf": "/static/media/Mukta-Medium.4f39fb7d3d188c6bb0d2.ttf",
@@ -19,11 +19,11 @@
     "static/media/menu.svg": "/static/media/menu.da155fd779ac8f1d2f452c062a1e92b8.svg",
     "index.html": "/index.html",
     "static/media/close.svg": "/static/media/close.dcb5a1807c90c153bc5d9d6eb9c74353.svg",
-    "main.4bd086c4.css.map": "/static/css/main.4bd086c4.css.map",
-    "main.18b5e733.js.map": "/static/js/main.18b5e733.js.map"
+    "main.e82b78da.css.map": "/static/css/main.e82b78da.css.map",
+    "main.a32dcb41.js.map": "/static/js/main.a32dcb41.js.map"
   },
   "entrypoints": [
-    "static/css/main.4bd086c4.css",
-    "static/js/main.18b5e733.js"
+    "static/css/main.e82b78da.css",
+    "static/js/main.a32dcb41.js"
   ]
 }

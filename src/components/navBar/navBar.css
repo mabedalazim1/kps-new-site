@@ -159,10 +159,39 @@
     z-index: 3;
     transition: 0.5s;
 }
+.header .avtatar-img{
+  width: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.header .user-con{
+  margin: 0 -10px;
+}
+.header span{
+  color: #fff;
+  cursor: pointer;
+}
+/* Larg*/
+@media (max-width: 1220px) {
+  .banner .navbar .links-con {
+    justify-content: flex-start;
+    padding-right: 50px;
+  }
+.title.active{
+  font-size: 12px;
+}
+ }
  /*Medim */
  @media (max-width: 992px) {
   .header {
-    font-size: 14px;
+    font-size: 13px;
+  }
+  .banner .navbar .links-con {
+    padding-right: 20px;
+  }
+  .title.active{
+    visibility: hidden;
   }
  }
 /*Small */
@@ -249,6 +278,7 @@
   .banner .login-con{
     padding-top: 10px;
     justify-content: center;
+    flex-direction: column;
   }
   .banner .navbar ul li a:hover {
     color: #000;

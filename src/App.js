@@ -21,7 +21,6 @@ import ImageData from './admin/pages/imageData/ImageData';
 import UpdateImageData from './admin/pages/imageData/UpdateImageData';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import Roiaa from './pages/roiaa/Roiaa';
 import Index from './pages/home/index/Index';
 import Login from './components/login/login.component';
 import AddImgData from './admin/pages/imageData/AddImgData';
@@ -52,7 +51,6 @@ function App() {
         <Route path='/' element={ <Index /> } >
           <Route path='/' element={<Home />} />
           <Route path='about' element={<About />} />
-          <Route path='roiaa' element={<Roiaa />} />
             <Route path='activity' element={ <Activity /> } />
             <Route path='activity:id' element={<ActivityData />} />    
         </Route>
@@ -66,6 +64,7 @@ function App() {
             <Route path='updateimgdata/:id' element={ <UpdateImageData /> } />
             
           </Route>
+
         <Route path='manasa' element={<Manasa />} />
         <Route path='login' element={<Login />} />
         <Route path='*' element={<NotFound />} />

@@ -1,5 +1,5 @@
 import './coverSubPages.css'
-
+import React from 'react'
 const CoverSubPages = ({ background, title }) => {
     return (
         <section className='cover-sub-pages'>

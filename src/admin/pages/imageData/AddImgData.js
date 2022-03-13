@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { retrieveImgCatogeries } from '../../actions/imageCategory'
 import { getCustmImgCatData } from '../../actions/imgDataByCat'
@@ -28,9 +28,9 @@ const AddImgData = () => {
             id: 1,
             name: "imgDesc",
             label: "وصف الصورة",
-            errorMessage: "Object is required",
             placeholder: "اضف وصفاً للصورة",
-            type: "text",
+            type: "textarea",
+            rows: "3",
             required: false,
         },
     ]

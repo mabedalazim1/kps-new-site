@@ -1,4 +1,5 @@
 import './featuredNews.css'
+import React from 'react'
 import Slider from '../slider/Slider';
 import SliderThree from '../slider/SliderThree';
 import { useSelector } from "react-redux";

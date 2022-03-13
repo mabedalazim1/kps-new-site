@@ -1,6 +1,6 @@
 import FormInput from "../../components/formInput/FormInput";
 import { retrieveImgSections } from './../../actions/imgSection'
-import { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const AddImgCatgery = ({ handleSubmit, inputs, values, onChange, addItem, setAddItem, errorMessage }) => {

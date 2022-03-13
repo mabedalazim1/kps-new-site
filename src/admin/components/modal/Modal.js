@@ -1,6 +1,6 @@
 import { Button, Modal } from "react-bootstrap";
 
-import {useState} from 'react';
+import React, { useState } from 'react';
 import './modal.css'
 const DeleteModal = ({ handelDelete, name }) => {
     const [show, setShow] = useState(false);

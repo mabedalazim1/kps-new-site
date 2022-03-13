@@ -1,5 +1,5 @@
 import './login.css'
-import { useState ,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import useForm from './../../hooks/useForm'
@@ -48,8 +48,12 @@ const Login = (props) => {
                 <div className="row">
                   <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div className="card card-signin my-5">
-                      <div className="card-body  mt-2 card-con">
+                  <div className="card-body  mt-2 card-con">
+                    <div className='logo-con'>
+                      <img src="/assets/images/logo-b.png" alt='' />
                         <h4 className="kps">K P S</h4>
+                    </div>
+
                         <h5 className="card-title text-center">تسجيل الدخول</h5>
                         <hr />
                         <div className="form-label-group">
@@ -91,14 +95,21 @@ const Login = (props) => {
                 {message}
               </div>
             </div>
-          )}
-                        </div>
-                      </div>
+                      ) }
+
                     </div>
+                    <p className='powered-by'>Powered by Mohamed Abedalazim</p>
                   </div>
                 </div>
+                <div className='anchor'>
+                  <a href="/" >الرئيسية</a>
+                </div>
+
+                  </div>
             </div>
-            </form>
+          </div>
+        </form>
+
     </section>
   </>
     )
