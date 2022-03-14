@@ -1,5 +1,5 @@
 import './activity.css'
-import React, { useState } from 'react'
+import React from 'react'
 import ImportantNumber from '../../components/importantNumber/ImportantNumber';
 import Footer from '../../components/footer/Footer';
 import CoverSubPages from '../../components/coverSubPages/CoverSubPages';
@@ -45,7 +45,7 @@ const Activity = () => {
             />
             <div className="container activity-text">
                 <div className='title-con'>
-                     <p className='main-title'>أنشطة الطلاب</p>
+                    <p className='main-title'>أنشطة الطلاب</p>
                 </div>
 
                 <div className='activity-con'>
@@ -58,13 +58,14 @@ const Activity = () => {
                                 className='activity-img'
                                 src={ URL + item.imageData[0].imgUrl } alt="title" />
                             <p onClick={ () => handleClick(item) }>
-                                { item.title }
+                                { item.title } &nbsp;&nbsp;&nbsp;&nbsp;
+                                <i className="fa-solid fa-angles-left"></i>
                             </p>
                         </div>
                     ))
                         :
                         <div>
-                             <img src='/assets/images/loading.gif' alt=''/>
+                            <img src='/assets/images/loading.gif' alt='' />
                         </div>
                     }
                 </div>

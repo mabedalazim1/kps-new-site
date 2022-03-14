@@ -287,4 +287,7 @@
     background-color: var(--main-color-b);
     bottom: 1px;
   }
+  .title.active{
+    visibility: visible;
+  }
 }
