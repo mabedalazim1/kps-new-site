@@ -1,0 +1,42 @@
+.access-denied{
+    width: 98%;
+    height: 100vh;
+    background-color:#eee;
+    padding-top: 50px;
+    text-align: center;
+    margin: auto;
+}
+.access-denied .img-logo{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    direction: rtl;
+    text-align: right;
+    padding: 30px;
+}
+.access-denied .img-logo img{
+    width: 100px;
+    margin-right: -50px;
+}
+.access-denied .img-logo p{
+    margin-right: 10px;
+    font-size: 20px;
+    font-family: var(--font-ar-c);
+    color: var(--main-color-d);
+}
+.access-denied .denied-img{
+    margin-bottom: -40px;
+}
+.access-denied .text{
+    font-family: var(--font-ar-c);
+    direction: rtl;
+    margin-bottom: 40px;
+}
+
+/*Small */
+@media (max-width: 768px) {
+    .access-denied .denied-img{
+        width: 70%;
+        margin-bottom: 0px;
+    }
+}

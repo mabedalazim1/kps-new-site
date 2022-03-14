@@ -1,0 +1,18 @@
+.anchor-home{
+    width: 100%;
+    text-align: center;
+    font-family: var(--main-font-ar-c);
+    margin:0 auto;
+    text-align: center;
+  }
+  .anchor-home a{
+    text-decoration: none;
+    color: var(--main-color-h);
+  }
+  .anchor-home i{
+    color: var(--main-color-h);
+  }
+  .anchor-home :hover{
+    font-size: large;
+    color: var(--main-color-b);
+  }

@@ -86,12 +86,6 @@
   height: 40px !important;
   text-align: center;
 }
-
-.anchor{
-  text-align: center;
-  font-family: var(--main-font-ar-a);
-  margin-top: -20px;
-}
 .con-signin .logo-con{
   display: flex;
   flex-direction: row-reverse;
@@ -99,7 +93,7 @@
   justify-content: space-between;
 }
 .con-signin img{
-  width:  80px;
+  width:  70px;
 }
 .con-signin .powered-by{
   color: var(--main-color-d);

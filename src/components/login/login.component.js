@@ -6,6 +6,7 @@ import useForm from './../../hooks/useForm'
 import validate from './../../helpers/validateInfo'
 import { login } from '../../actions/auth'
 import history from '../../helpers/history'
+import BackHome from './backHome/BackHome'
 
 const Login = (props) => {
   const  { handleChange, handleSubmit, values, errors} = useForm(true,validate)
@@ -101,9 +102,7 @@ const Login = (props) => {
                     <p className='powered-by'>Powered by Mohamed Abedalazim</p>
                   </div>
                 </div>
-                <div className='anchor'>
-                  <a href="/" >الرئيسية</a>
-                </div>
+               <BackHome />
 
                   </div>
             </div>

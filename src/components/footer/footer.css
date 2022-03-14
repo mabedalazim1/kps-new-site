@@ -60,8 +60,8 @@ footer .footer-logo{
     flex-direction: column;
 }
 .footer-logo img{
-    height: 400px;
-    margin: -50px 0;
+    height: 250px;
+    margin: 20px 0;
 }
 .footer-sub-title{
     margin: 10px;
@@ -109,8 +109,8 @@ footer .footer-logo{
         height: 300px;
     }
     .footer-logo img{
-        height: 200px;
-        padding-bottom: 20px;
+        height: 120px;
+      margin:-10px 0 10px;
     }
     .footer-sub-title{
         margin-top: 10px;

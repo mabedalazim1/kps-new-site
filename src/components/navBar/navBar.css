@@ -120,15 +120,15 @@
   transition: 0.5s;
 }
 .logo-b{
-  width: 50px;
+  width: 35px;
   position: absolute;
   left: 65px;
-  top: 1px;
+  top: 5px;
 }
 .logo-b.active{
   visibility: visible;
   position: fixed;
-  top: 0;
+  top: 5px;
   left: 15px;
   z-index: 3;
   transition: 0.5s;
@@ -231,7 +231,7 @@
 .logo-b {
   visibility: visible;
   transition: 0.5s;
-  top: -20px;
+  top: -15px;
   }
 .banner .mobile-menu {
   visibility: visible;
